@@ -89,10 +89,5 @@ vim.opt.swapfile = true -- Keep swap files
 vim.opt.undofile = true -- Keep undo history
 vim.opt.backup = false -- Keep a backup of files
 vim.opt.writebackup = true -- First write to backup before writing file
-if require("nixCatsUtils").getCatOrDefault("languages.vimspell", true) then
-  vim.opt.spell = true -- Turn on spellchecking
-  vim.opt.spelllang = { "en", "tr" }
-else
-  vim.opt.spell = false -- Turn on spellchecking
-end
+vim.opt.spell = false -- Turn off spellchecking
 vim.opt.sessionoptions = "blank,buffers,folds,globals,help,localoptions,options,sesdir,tabpages,terminal,winsize"

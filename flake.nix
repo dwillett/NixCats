@@ -1,6 +1,6 @@
 # NixCats: flake.nix
 {
-  description = "bbaserdem's NixCats-nvim configuration";
+  description = "dwillett's NixCats-nvim configuration";
 
   inputs = {
     # ----- System Flakes ----- #
@@ -14,16 +14,6 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
     # ----- External Plugins ----- #
-    # Spelling libraries
-    vimspell-tr = {
-      url = "https://ftp.nluug.nl/pub/vim/runtime/spell/tr.utf-8.spl";
-      flake = false;
-    };
-    vimspell-en = {
-      url = "https://ftp.nluug.nl/pub/vim/runtime/spell/en.utf-8.spl";
-      flake = false;
-    };
-
     # Grayscale color theme
     plugins-e-ink-nvim = {
       url = "github:alexxGmZ/e-ink.nvim";

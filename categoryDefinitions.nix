@@ -14,11 +14,6 @@
     name = "e-ink.nvim";
     plugin = pkgs.neovimPlugins.e-ink-nvim;
   };
-  myVimspell = pkgs.runCommand "vimspell-lang" {} ''
-    mkdir -p $out/spell
-    cp ${inputs.vimspell-tr} $out/spell/tr.utf-8.spl
-    cp ${inputs.vimspell-en} $out/spell/en.utf-8.spl
-  '';
 in {
   # The way the tree is established is;
   # <category>
@@ -134,9 +129,6 @@ in {
     tools = {
       files = [
         oil-nvim # File browser
-      ];
-      formatting = [
-        myVimspell
       ];
     };
 
