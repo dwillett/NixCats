@@ -4,7 +4,7 @@
 return {
   "nvim-lspconfig",
   for_cat = {
-    cat = "functionality",
+    cat = "tools.completion",
     default = true,
   },
   event = { "FileType" },

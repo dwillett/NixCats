@@ -23,7 +23,6 @@ require("lze").load({
   { import = "pluginConf.markdown" },
   { import = "pluginConf.mason" },
   { import = "pluginConf.mini" },
-  { import = "pluginConf.neotree" },
   { import = "pluginConf.oil" },
   { import = "pluginConf.pomodoro" },
   { import = "pluginConf.snacks" },
@@ -31,6 +30,5 @@ require("lze").load({
   { import = "pluginConf.treesitter" },
   { import = "pluginConf.trouble" },
   { import = "pluginConf.util" },
-  { import = "pluginConf.vimtex" },
   { import = "pluginConf.whichKey" },
 })

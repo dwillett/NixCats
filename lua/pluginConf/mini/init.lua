@@ -4,7 +4,7 @@
 return {
   "mini.nvim",
   for_cat = {
-    cat = "functionality",
+    cat = "tools.motions",
     default = true,
   },
   in_extra = {

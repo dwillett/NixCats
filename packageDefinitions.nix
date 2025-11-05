@@ -51,25 +51,22 @@
         node.enable = true;
       };
       # Extra aliases
-      aliases = [
-        "neovim-nixCats-full"
-        "nixCats-full"
-        "nc-full"
-      ];
+      aliases = ["nc-full"];
     };
 
     # and a set of categories that you want
     categories = {
       system = true;
       tools = true;
+      ui = true;
       languages = true;
     };
 
     # Extra arguments ta be made available to nixCats
     extra = {
       colorscheme = {
-        name = "gruvbox";
-        style = "dark";
+        name = "catppuccin";
+        style = "mocha";
         translucent = true;
       };
       # Override this in a home-manager config

@@ -4,7 +4,7 @@
 return {
   "conform.nvim",
   for_cat = {
-    cat = "functionality",
+    cat = "tools.formatting",
     default = true,
   },
   event = { "BufWritePre" },

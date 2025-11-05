@@ -11,9 +11,6 @@ aerial_keymap.set("n", "<Leader>sN", function()
   require("aerial").snacks_picker()
 end, { desc = "Aerial navigation (snacks)" })
 
--- Neotree
-vim.keymap.set("n", "<Leader>sf", "<cmd>Neotree focus float document_symbols<CR>", { desc = "Neotree symbols" })
-
 -- Trouble
 vim.keymap.set("n", "<Leader>st", "<cmd>Trouble symbols toggle focus=false<CR>", { desc = "Trouble symbols" })
 

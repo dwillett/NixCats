@@ -4,7 +4,7 @@
 return {
   "which-key.nvim",
   for_cat = {
-    cat = "status",
+    cat = "ui.views",
     default = true,
   },
   lazy = false,

@@ -4,7 +4,7 @@
 return {
   "flash.nvim",
   for_cat = {
-    cat = "functionality",
+    cat = "tools.motions",
     default = true,
   },
   on_require = { "flash" },

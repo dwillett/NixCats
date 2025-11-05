@@ -33,8 +33,6 @@ require("nixCatsUtils.catPaq").setup({
   { "folke/snacks.nvim" },
   -- Theme
   { "nvim-tree/nvim-web-devicons" },
-  -- Languages.latex
-  { "lervag/vimtex" },
 
   -- Lazy loaded plugins
   -- Main
@@ -80,16 +78,6 @@ require("nixCatsUtils.catPaq").setup({
   { "mfussenegger/nvim-lint", opt = true },
   { "epwalsh/pomo.nvim", opt = true },
   { "axieax/urlview.nvim", opt = true },
-  -- Completion.Blink
-  { "Saghen/blink.cmp", opt = true },
-  { "Saghen/blink.compat", opt = true },
-  { "ribru17/blink-cmp-spell", opt = true },
-  { "moyiz/blink-emoji.nvim", opt = true },
-  { "mikavilpas/blink-ripgrep.nvim", opt = true },
-  { "micangl/cmp-vimtex", opt = true },
-  -- Completion.Snippets.luasnip
-  { "L3MON4D3/LuaSnip", opt = true, as = "luasnip" },
-  { "rafamadriz/friendly-snippets", opt = true },
   -- Tools.Treesitter
   { "nvim-treesitter/nvim-treesitter", opt = true, build = ":TSUpdate" },
   { "nvim-treesitter/nvim-treesitter-context", opt = true },
@@ -101,7 +89,6 @@ require("nixCatsUtils.catPaq").setup({
   -- Languages.Lua
   { "folke/lazydev.nvim", opt = true },
   -- Languages.Markdown
-  { "jbyuki/nabla.nvim", opt = true },
   { "jakewvincent/mkdnflow.nvim", opt = true },
   { "ellisonleao/glow.nvim", opt = true },
   { "epwalsh/obsidian.nvim", opt = true },

@@ -5,7 +5,7 @@
 return {
   "tabby.nvim",
   for_cat = {
-    cat = "theme",
+    cat = "ui.bar",
     default = true,
   },
   event = { "DeferredUIEnter" },

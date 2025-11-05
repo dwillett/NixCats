@@ -7,7 +7,7 @@
 return { -- Catppuccin theme
   "catppuccin-nvim",
   for_cat = {
-    cat = "theme",
+    cat = "ui.theme",
     default = true,
   },
   in_extra = {
@@ -81,13 +81,11 @@ return { -- Catppuccin theme
     -- Set integrations options
     opt.integrations = {
       aerial = true,
-      blink_cmp = true,
       fidget = true,
       gitsigns = true,
       markdown = true,
       mason = true,
       mini = true,
-      neotree = true,
       cmp = true,
       dap = true,
       dap_ui = true,

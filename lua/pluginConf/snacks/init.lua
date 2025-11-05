@@ -5,11 +5,8 @@
 return {
   "snacks.nvim",
   for_cat = {
-    cat = "functionality",
+    cat = "tools.files",
     default = true,
-  },
-  dep_of = {
-    "neo-tree.nvim",
   },
   lazy = false,
   after = function(plugin)

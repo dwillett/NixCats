@@ -30,11 +30,6 @@ minimap_keymap.set("n", "<Leader>u<C-m>", function()
   require("mini.map").toggle_side()
 end, { desc = "Switch side for minimap" })
 
--- File browsers tTo
--- Neotree
-vim.keymap.set("n", "<Leader>ut", "<cmd>Neotree focus left<CR>", { desc = "Go to Neotree" })
-vim.keymap.set("n", "<Leader>uT", "<cmd>Neotree focus float<CR>", { desc = "Floating Neotree" })
-vim.keymap.set("n", "<Leader>u<C-T>", "<cmd>Neotree toggle<CR>", { desc = "Toggle Neotree" })
 -- Oil
 vim.keymap.set("n", "<Leader>uo", "<cmd>Oil<CR>", { desc = "Open Oil" })
 

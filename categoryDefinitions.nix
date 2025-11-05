@@ -8,13 +8,8 @@
   name,
   mkNvimPlugin,
   ...
-} @ packageDef: let
-  # Some plugins
-  eink-nvim = {
-    name = "e-ink.nvim";
-    plugin = pkgs.neovimPlugins.e-ink-nvim;
-  };
-in {
+} @ packageDef:
+{
   # The way the tree is established is;
   # <category>
   # ├─ system         : Plugins that should be there by default
@@ -81,22 +76,12 @@ in {
       c = [
         clang-tools
       ];
-      latex = [
-        # pplatex # Latex log parsing tool
-        neovim-remote # Client server for vimtex to run latexmk
-        pstree
-        bibtex-tidy # Latex cleaner
-        tex-fmt
-        ltex-ls-plus
-        languagetool
-      ];
       lua = [
         lua-language-server
         stylua
       ];
       markdown = [
         glow # Markdown typesetter for terminal
-        ltex-ls-plus
         languagetool
       ];
       nix = [
@@ -128,6 +113,7 @@ in {
 
     tools = {
       files = [
+      snacks-nvim
         oil-nvim # File browser
       ];
     };
@@ -138,11 +124,7 @@ in {
       ];
     };
 
-    languages = {
-      latex = [
-        vimtex # LaTeX suite, can't be lazy loaded
-      ];
-    };
+    languages = {};
   };
 
   # Lazy loading plugins
@@ -157,19 +139,6 @@ in {
       # Completion engines
       completion = [
         nvim-lspconfig # LSP default configuration
-        nvim-cmp # Completion engine
-        # Completion engines
-        cmp_luasnip # Snippet suggestions
-        cmp-nvim-lsp # LSP suggestions
-        cmp-nvim-lsp-signature-help # LSP signature help
-        cmp-spell # Autocomplete from spelllang
-        cmp-async-path # Autocomplete from filesystem (no-block)
-        cmp-vimtex # Vimtex source for cmp
-        cmp-cmdline # Commandline completion
-        cmp-cmdline-history # Commandline history completion
-        cmp-buffer # Buffer completion
-        cmp-rg # Ripgrep
-        cmp-dap # DAP buffer completion
       ];
       # Debug tools
       debug = [
@@ -217,7 +186,6 @@ in {
         # Themes that may be used
         catppuccin-nvim
         cyberdream-nvim
-        eink-nvim
         gruvbox-nvim
         gruvbox-material-nvim
         kanagawa-nvim
@@ -246,7 +214,6 @@ in {
         lazydev-nvim # Configure editing nvim configuration files
       ];
       markdown = [
-        nabla-nvim # Render latex equations
         mkdnflow-nvim # Navigate wiki links
         glow-nvim # Render markdown in nvim terminal
         render-markdown-nvim

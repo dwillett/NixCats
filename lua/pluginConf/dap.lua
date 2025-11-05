@@ -5,7 +5,7 @@ return {
   {
     'nvim-dap-ui',
     for_cat = {
-      cat = 'debug',
+      cat = 'tools.debug',
       default = true,
     },
     on_require = { 'dapui', },
@@ -16,7 +16,7 @@ return {
   {
     'nvim-dap-virtual-text',
     for_cat = {
-      cat = 'debug',
+      cat = 'tools.debug',
       default = true,
     },
     on_plugin = { 'nvim-dap-ui', 'nvim-dap', },
@@ -28,7 +28,7 @@ return {
   {
     'nvim-dap',
     for_cat = {
-      cat = 'debug',
+      cat = 'tools.debug',
       default = true,
     },
     dep_of = {
@@ -43,7 +43,7 @@ return {
   {
     'nvim-nio',
     for_cat = {
-      cat = 'debug',
+      cat = 'tools.debug',
       default = true,
     },
     dep_of = {

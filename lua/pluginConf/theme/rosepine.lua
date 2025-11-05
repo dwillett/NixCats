@@ -4,7 +4,7 @@
 return {
   "rose-pine.nvim",
   for_cat = {
-    cat = "theme",
+    cat = "ui.theme",
     default = true,
   },
   in_extra = {

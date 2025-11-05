@@ -5,7 +5,7 @@ return {
   { -- Library plugins
     "plenary.nvim",
     for_cat = {
-      cat = "main",
+      cat = "system",
       default = true,
     },
     dep_of = {
@@ -18,7 +18,7 @@ return {
   { -- Make dir when saving
     "mkdir.nvim",
     for_cat = {
-      cat = "functionality",
+      cat = "tools.utility",
       default = true,
     },
     event = { "BufWritePre" },

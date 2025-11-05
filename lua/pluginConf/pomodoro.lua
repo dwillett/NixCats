@@ -12,7 +12,7 @@
 return {
   'pomo.nvim',
   for_cat = {
-    cat = 'functionality',
+    cat = 'tools.utility',
     default = true,
   },
   cmd = {

@@ -14,11 +14,6 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
     # ----- External Plugins ----- #
-    # Grayscale color theme
-    plugins-e-ink-nvim = {
-      url = "github:alexxGmZ/e-ink.nvim";
-      flake = false;
-    };
   };
 
   outputs = {
@@ -96,7 +91,7 @@
       # We also export a nixos module to allow reconfiguration from configuration.nix
       # and the same for home manager
       inheritVars = {
-        moduleNamespace = ["nixCats"];
+        moduleNamespace = [defaultPackageName];
         inherit
           defaultPackageName
           dependencyOverlays
@@ -127,7 +122,7 @@
       nixosModules.default = nixosModule;
       homeManagerModules.default = homeManagerModule;
 
-      inherit utils;
+      inherit utils nixosModule homeManagerModule;
       inherit (utils) templates;
     });
 }

@@ -6,7 +6,7 @@
 return {
   'oil.nvim',
   for_cat = {
-    cat = 'functionality',
+    cat = 'tools.files',
     default = true,
   },
   lazy = false,

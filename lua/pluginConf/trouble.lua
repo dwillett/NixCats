@@ -3,7 +3,7 @@
 return {
   "trouble.nvim",
   for_cat = {
-    cat = "status",
+    cat = "ui.views",
     default = true,
   },
   dep_of = {

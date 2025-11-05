@@ -4,7 +4,7 @@
 return {
   'fidget.nvim',
   for_cat = {
-    cat = 'status',
+    cat = 'ui.views',
     default = true,
   },
   event = { 'DeferredUIEnter', },

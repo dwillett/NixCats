@@ -27,7 +27,6 @@ end, { desc = "Files" })
 snacks_keymap.set("n", "<Leader>np", function()
   require("snacks").picker.projects()
 end, { desc = "Git repos" })
-vim.keymap.set("n", "<Leader>nB", "<cmd>Neotree focus float buffers<CR>", { desc = "Buffer list (neotree)" })
 
 -- Window mappings (dual hjkl and arrow navigation)
 vim.keymap.set("n", "<Leader>n<Left>", "<cmd>wincmd h<CR>", { desc = "Move to left window" })

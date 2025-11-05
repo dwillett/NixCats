@@ -25,7 +25,6 @@ return {
     },
     dep_of = {
       "aerial.nvim",
-      "nabla.nvim",
       "render-markdown.nvim",
     },
     event = "DeferredUIEnter",
