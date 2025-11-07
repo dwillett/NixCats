@@ -11,16 +11,10 @@ return {
   { import = "pluginConf/theme/gruvboxMaterial" },
   { import = "pluginConf/theme/kanagawa" },
   { import = "pluginConf/theme/lualine" },
-  { import = "pluginConf/theme/material" },
   { import = "pluginConf/theme/melange" },
-  { import = "pluginConf/theme/minitheme" },
   { import = "pluginConf/theme/nightfox" },
-  { import = "pluginConf/theme/oldworld" },
   { import = "pluginConf/theme/onedark" },
-  { import = "pluginConf/theme/rosepine" },
   { import = "pluginConf/theme/tabby" },
-  -- { import = "pluginConf/theme/tokyonight" },
-  { import = "pluginConf/theme/vscode" },
   { -- LSP kind icons
     "lspkind.nvim",
     for_cat = {

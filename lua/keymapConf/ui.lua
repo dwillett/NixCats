@@ -9,10 +9,6 @@ snacks_keymap.set("n", "<F2>", function()
   require("snacks").terminal.toggle()
 end, { desc = "Open terminal" })
 
--- Fidget status toggles: fF
-vim.keymap.set({ "n", "v" }, "<Leader>uf", "<cmd>Fidget suppress<CR>", { desc = "Toggle LSP info (fidget)" })
-vim.keymap.set({ "n", "v" }, "<Leader>uF", "<cmd>Fidget history<CR>", { desc = "Show LSP status history (fidget)" })
-
 -- Mason & lsp config: lLp
 vim.keymap.set("n", "<Leader>ul", "<cmd>LspInfo<CR>", { desc = "Open LSPconfig menu" })
 vim.keymap.set("n", "<Leader>uL", "<cmd>Mason<CR>", { desc = "Open Mason menu" })

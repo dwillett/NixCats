@@ -4,7 +4,7 @@
 return {
   "lazydev.nvim",
   for_cat = {
-    cat = "languages.lua",
+    cat = "lsp",
     default = true,
   },
   cmd = { "LazyDev" },

@@ -25,71 +25,63 @@ require("nixCatsUtils.catPaq").setup({
   { "jay-babu/mason-nvim-dap.nvim", opt = true },
 
   -- Startup plugins
-  -- Main
+  -- Util
   { "BirdeeHub/lze" },
   { "BirdeeHub/lzextras" },
-  -- Functionality
   { "stevearc/oil.nvim" },
   { "folke/snacks.nvim" },
-  -- Theme
+  -- UI
   { "nvim-tree/nvim-web-devicons" },
 
   -- Lazy loaded plugins
-  -- Main
-  { "nvim-lua/plenary.nvim", opt = true },
-  { "MunifTanjim/nui.nvim", opt = true },
+  -- Coding
+  { "saghen/blink.cmp", opt = true },
+  { "saghen/blink.compat", opt = true },
+  { "L3MON4D3/LuaSnip", opt = true },
+  { "rafamadriz/friendly-snippets", opt = true },
   -- Debug
   { "nvim-neotest/nvim-nio", opt = true },
   { "mfussenegger/nvim-dap", opt = true },
   { "rcarriga/nvim-dap-ui", opt = true },
   { "theHamsta/nvim-dap-virtual-text", opt = true },
-  -- Theme
-  { "onsails/lspkind.nvim", opt = true },
-  { "nvim-lualine/lualine.nvim", opt = true },
-  { "nanozuki/tabby.nvim", opt = true },
-  { "catppuccin/nvim", opt = true },
-  { "scottmckendry/cyberdream.nvim", opt = true },
-  { "f4z3r/gruvbox-material.nvim", opt = true },
-  { "ellisonleao/gruvbox.nvim", opt = true },
-  { "rebelot/kanagawa.nvim", opt = true },
-  { "marko-cerovac/material.nvim", opt = true },
-  { "savq/melange-nvim", opt = true },
-  { "EdenEast/nightfox.nvim", opt = true },
-  { "dgox16/oldworld.nvim", opt = true },
-  { "joshdick/onedark.vim", opt = true },
-  { "rose-pine/neovim", as = "rose-pine.nvim", opt = true },
-  { "folke/tokyonight.nvim", opt = true },
-  { "Mofiqul/vscode.nvim", opt = true },
-  -- Status
-  { "stevearc/aerial.nvim", opt = true },
-  { "j-hui/fidget.nvim", opt = true },
-  { "folke/trouble.nvim", opt = true },
-  { "folke/which-key.nvim", opt = true },
-  -- Functionality
-  { "anuvyklack/hydra.nvim", opt = true },
-  { "stevearc/conform.nvim", opt = true },
+  -- Editor
   { "echasnovski/mini.nvim", opt = true },
   { "folke/flash.nvim", opt = true },
-  { "jghauser/mkdir.nvim", opt = true },
-  { "nvim-neo-tree/neo-tree.nvim", opt = true },
-  { "3rd/image.nvim", opt = true },
-  { "neovim/nvim-lspconfig", opt = true },
-  { "s1n7ax/nvim-window-picker", opt = true },
+  { "MagicDuck/grug-far.nvim", opt = true },
+  { "folke/which-key.nvim", opt = true },
+  { "lewis6991/gitsigns.nvim", opt = true },
+  { "folke/trouble.nvim", opt = true },
+  -- Formatting
+  { "stevearc/conform.nvim", opt = true },
   { "mfussenegger/nvim-lint", opt = true },
-  { "epwalsh/pomo.nvim", opt = true },
-  { "axieax/urlview.nvim", opt = true },
-  -- Tools.Treesitter
+  -- LSP
+  { "neovim/nvim-lspconfig", opt = true },
+  { "folke/lazydev.nvim", opt = true },
+  -- Markdown
+  { "jakewvincent/mkdnflow.nvim", opt = true },
+  { "ellisonleao/glow.nvim", opt = true },
+  { "MeanderingProgrammer/render-markdown.nvim", opt = true },
+  -- Treesitter
   { "nvim-treesitter/nvim-treesitter", opt = true, build = ":TSUpdate" },
   { "nvim-treesitter/nvim-treesitter-context", opt = true },
   { "nvim-treesitter/nvim-treesitter-refactor", opt = true },
   { "nvim-treesitter/nvim-treesitter-textobjects", opt = true },
-  -- Tools.Git
-  { "lewis6991/gitsigns.nvim", opt = true },
-  { "tpope/vim-fugitive", opt = true },
-  -- Languages.Lua
-  { "folke/lazydev.nvim", opt = true },
-  -- Languages.Markdown
-  { "jakewvincent/mkdnflow.nvim", opt = true },
-  { "ellisonleao/glow.nvim", opt = true },
-  { "epwalsh/obsidian.nvim", opt = true },
+  -- Ui
+  { "MunifTanjim/nui.nvim", opt = true },
+  { "catppuccin/nvim", opt = true },
+  { "scottmckendry/cyberdream.nvim", opt = true },
+  { "ellisonleao/gruvbox.nvim", opt = true },
+  { "f4z3r/gruvbox-material.nvim", opt = true },
+  { "rebelot/kanagawa.nvim", opt = true },
+  { "savq/melange-nvim", opt = true },
+  { "EdenEast/nightfox.nvim", opt = true },
+  { "joshdick/onedark.vim", opt = true },
+  { "nvim-lualine/lualine.nvim", opt = true },
+  { "nanozuki/tabby.nvim", opt = true },
+  { "stevearc/aerial.nvim", opt = true },
+  { "onsails/lspkind.nvim", opt = true },
+  -- Util
+  { "nvim-lua/plenary.nvim", opt = true },
+  { "epwalsh/pomo.nvim", opt = true },
+  { "axieax/urlview.nvim", opt = true },
 })

@@ -15,7 +15,6 @@ require("lze").load({
   { import = "pluginConf.conform" },
   { import = "pluginConf.dap" },
   { import = "pluginConf.flash" },
-  { import = "pluginConf.fidget" },
   { import = "pluginConf.git" },
   { import = "pluginConf.lazydev" },
   { import = "pluginConf.lint" },

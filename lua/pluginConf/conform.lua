@@ -4,7 +4,7 @@
 return {
   "conform.nvim",
   for_cat = {
-    cat = "tools.formatting",
+    cat = "formatting",
     default = true,
   },
   event = { "BufWritePre" },
@@ -17,16 +17,18 @@ return {
         lua = { "stylua" },
         python = { "ruff_organize_imports", "ruff_format" },
         nix = { "alejandra" },
-        bib = { "bibtex-tidy" },
         c = { "clang-format" },
-        tex = { "tex-fmt" },
       },
       -- Default options
       default_format_opts = {
+        timeout_ms = 3000,
+        async = false,
+        quiet = false,
         lsp_format = "fallback",
       },
       -- Formatter specific options
       formatters = {
+        injected = { options = { ignore_errors = true } },
         stylua = {
           prepend_args = {
             "--indent-type",

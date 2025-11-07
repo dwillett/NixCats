@@ -12,6 +12,7 @@
 ---@field convert? snacks.image.convert.Config
 
 return {
+  enabled = true,
   formats = {
     "png",
     "jpg",

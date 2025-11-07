@@ -81,7 +81,6 @@ return { -- Catppuccin theme
     -- Set integrations options
     opt.integrations = {
       aerial = true,
-      fidget = true,
       gitsigns = true,
       markdown = true,
       mason = true,

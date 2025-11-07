@@ -10,53 +10,52 @@
 -- So snacks.notifier works as drop-in replacement
 
 return {
-  'pomo.nvim',
+  "pomo.nvim",
   for_cat = {
-    cat = 'tools.utility',
+    cat = "util",
     default = true,
   },
   cmd = {
-    'TimerStart',
-    'TimerRepeat',
-    'TimerSession',
+    "TimerStart",
+    "TimerRepeat",
+    "TimerSession",
   },
   after = function(plugin)
-    require('pomo').setup({
+    require("pomo").setup({
       notifiers = {
         { -- Default falls back to using vim.notify
-          name = 'Default',
+          name = "Default",
           opts = {
             sticky = true,
-            title_icon = '󱎫 ',
-            text_icon = '󰄉 ',
+            title_icon = "󱎫 ",
+            text_icon = "󰄉 ",
             -- These are for snacks.notifier
             -- style = 'fancy',
             history = false,
           },
         },
         { -- Libnotify notifier
-          name = 'System',
+          name = "System",
         },
       },
       -- Specific timer name overrides to notifiers
       timers = {
         -- This makes Break timers to only use the system notifier
-        Break = { name = 'System', },
-        ['Short Break'] = { name = 'System', },
-        ['Long Break'] = { name = 'System', },
+        Break = { name = "System" },
+        ["Short Break"] = { name = "System" },
+        ["Long Break"] = { name = "System" },
       },
       -- Custom timer sessions
       sessions = {
         pomodoro = {
-          { name = 'Work',        duration = '25m', },
-          { name = 'Short Break', duration =  '5m', },
-          { name = 'Work',        duration = '25m', },
-          { name = 'Short Break', duration =  '5m', },
-          { name = 'Work',        duration = '25m', },
-          { name = 'Long Break',  duration = '15m', },
+          { name = "Work", duration = "25m" },
+          { name = "Short Break", duration = "5m" },
+          { name = "Work", duration = "25m" },
+          { name = "Short Break", duration = "5m" },
+          { name = "Work", duration = "25m" },
+          { name = "Long Break", duration = "15m" },
         },
       },
-
     })
   end,
 }

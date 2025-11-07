@@ -4,7 +4,7 @@
 return {
   "nvim-lint",
   for_cat = {
-    cat = "tools.formatting",
+    cat = "formatting",
     default = true,
   },
   event = { "DeferredUIEnter" },

@@ -4,15 +4,10 @@
 return {
   "which-key.nvim",
   for_cat = {
-    cat = "ui.views",
+    cat = "editor",
     default = true,
   },
   lazy = false,
-  -- This lazy loads which-key before mini.nvim is loaded
-  -- Hopefully this makes the pcall(require, 'mini.icons') fail
-  -- If it fails but nvim-web-devicons succeeds, we will have devicons here
-  -- dep_of = { 'mini.nvim', },
-  -- event = { 'DeferredUIEnter' },
   after = function(plugin)
     require("which-key").setup({
       preset = "helix",

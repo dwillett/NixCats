@@ -4,19 +4,19 @@
 
 -- Configuring oil.nvim
 return {
-  'oil.nvim',
+  "oil.nvim",
   for_cat = {
-    cat = 'tools.files',
+    cat = "util",
     default = true,
   },
   lazy = false,
   after = function(plugin)
-    require('oil').setup({
+    require("oil").setup({
       default_file_explorer = true,
       columns = {
-        'icon',
+        "icon",
         -- 'permissions',
-        'size',
+        "size",
         -- 'mtime',
       },
       -- Buffer-local options to use for oil buffers

@@ -5,7 +5,7 @@
 return {
   "snacks.nvim",
   for_cat = {
-    cat = "tools.files",
+    cat = "util",
     default = true,
   },
   lazy = false,
@@ -19,7 +19,7 @@ return {
       dim = { enabled = true },
       gitbrowse = { enabled = true },
       image = { enabled = true },
-      -- image = require("pluginConf.snacks.image"),
+      image = require("pluginConf.snacks.image"),
       indent = require("pluginConf.snacks.indent"),
       input = { enabled = true },
       layout = { enabled = true },

@@ -4,7 +4,7 @@
 return {
   "aerial.nvim",
   for_cat = {
-    cat = "ui.views",
+    cat = "ui",
     default = true,
   },
   cmd = {
@@ -28,21 +28,23 @@ return {
   ft = "lua",
   after = function(plugin)
     require("aerial").setup({
-      backends = { "lsp", "treesitter", "markdown", "man", "asciidoc" },
-      layout = {
-        default_direction = "prefer_left",
-      },
       attach_mode = "global",
+      backends = { "lsp", "treesitter", "markdown", "man", "asciidoc" },
       show_guides = true,
+      layout = {
+        resize_to_content = false,
+        default_direction = "prefer_left",
+        win_opts = {
+          winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
+          signcolumn = "yes",
+          statuscolumn = " ",
+        },
+      },
       guides = {
         mid_item = "╠═",
         last_item = "╚═",
         nested_top = "║ ",
         whitespace = "  ",
-      },
-      float = {
-        border = "rounded",
-        relative = "win",
       },
     })
   end,

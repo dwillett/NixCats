@@ -3,51 +3,51 @@
 
 return {
   {
-    'nvim-dap-ui',
+    "nvim-dap-ui",
     for_cat = {
-      cat = 'tools.debug',
+      cat = "debug",
       default = true,
     },
-    on_require = { 'dapui', },
+    on_require = { "dapui" },
     after = function(plugin)
-      require('dapui').setup()
+      require("dapui").setup()
     end,
   },
   {
-    'nvim-dap-virtual-text',
+    "nvim-dap-virtual-text",
     for_cat = {
-      cat = 'tools.debug',
+      cat = "debug",
       default = true,
     },
-    on_plugin = { 'nvim-dap-ui', 'nvim-dap', },
-    on_require = { 'nvim-dap-virtual-text', },
+    on_plugin = { "nvim-dap-ui", "nvim-dap" },
+    on_require = { "nvim-dap-virtual-text" },
     after = function(plugin)
-      require('dapui').setup()
+      require("dapui").setup()
     end,
   },
   {
-    'nvim-dap',
+    "nvim-dap",
     for_cat = {
-      cat = 'tools.debug',
+      cat = "debug",
       default = true,
     },
     dep_of = {
-      'nvim-dap-ui',
-      'nvim-dap-virtual-text',
+      "nvim-dap-ui",
+      "nvim-dap-virtual-text",
     },
-    on_require = { 'dap', },
+    on_require = { "dap" },
     cmd = {
-      'DapNew',
+      "DapNew",
     },
   },
   {
-    'nvim-nio',
+    "nvim-nio",
     for_cat = {
-      cat = 'tools.debug',
+      cat = "debug",
       default = true,
     },
     dep_of = {
-      'nvim-dap-ui',
+      "nvim-dap-ui",
     },
-  }
+  },
 }

@@ -5,7 +5,7 @@ return {
   { -- Library plugins
     "plenary.nvim",
     for_cat = {
-      cat = "system",
+      cat = "util",
       default = true,
     },
     dep_of = {
@@ -14,13 +14,5 @@ return {
       "telescope.nvim",
     },
     on_require = { "plenary" },
-  },
-  { -- Make dir when saving
-    "mkdir.nvim",
-    for_cat = {
-      cat = "tools.utility",
-      default = true,
-    },
-    event = { "BufWritePre" },
   },
 }

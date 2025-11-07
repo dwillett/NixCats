@@ -4,12 +4,8 @@
 return {
   "mini.nvim",
   for_cat = {
-    cat = "tools.motions",
+    cat = "editor",
     default = true,
-  },
-  in_extra = {
-    key = "colorscheme.name",
-    value = "mini",
   },
   on_plugin = { "nvim-treesitter" },
   event = { "DeferredUIEnter" },

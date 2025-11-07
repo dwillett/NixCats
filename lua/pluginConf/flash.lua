@@ -4,13 +4,13 @@
 return {
   "flash.nvim",
   for_cat = {
-    cat = "tools.motions",
+    cat = "editor",
     default = true,
   },
   on_require = { "flash" },
   after = function(plugin)
     require("flash").setup({
-      labels = "aoeeuidhtnpyfgcrlqjkxbmwvz",
+      labels = "arstgmneioqwfpbjluyzxcdvkh",
     })
   end,
 }
