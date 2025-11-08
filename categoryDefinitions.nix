@@ -74,6 +74,8 @@
   optionalPlugins = with pkgs.vimPlugins; {
     coding = [
       blink-cmp
+      blink-ripgrep-nvim
+      blink-emoji-nvim
       luasnip
       friendly-snippets
     ];

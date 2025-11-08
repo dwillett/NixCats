@@ -37,6 +37,8 @@ require("nixCatsUtils.catPaq").setup({
   -- Coding
   { "saghen/blink.cmp", opt = true },
   { "saghen/blink.compat", opt = true },
+  { "moyiz/blink-emoji.nvim", opt = true },
+  { "mikavilpas/blink-ripgrep.nvim", opt = true },
   { "L3MON4D3/LuaSnip", opt = true },
   { "rafamadriz/friendly-snippets", opt = true },
   -- Debug

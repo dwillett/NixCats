@@ -2,5 +2,6 @@
 -- Plugins config
 
 return {
+  { import = "pluginConf.completion.luasnip" },
   { import = "pluginConf.completion.blink" },
 }
