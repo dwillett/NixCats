@@ -15,7 +15,9 @@ if require("nixCatsUtils").enableForCategory("util") then
   snacks_toggle.option("relativenumber"):map("<leader>uL")
   snacks_toggle.diagnostics():map("<leader>ud")
   snacks_toggle.line_number():map("<leader>ul")
-  snacks_toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
+  snacks_toggle
+    .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+    :map("<leader>uc")
   snacks_toggle.treesitter():map("<leader>uT")
   snacks_toggle.option("background", { off = "light", on = "dark" }):map("<leader>ub")
 
@@ -33,11 +35,17 @@ if require("nixCatsUtils").enableForCategory("util") then
   snacks_toggle.zoom():map("<leader>uZ")
 
   -- Colorscheme picker
-  snacks_keymap.set("n", "<leader>uC", function() snacks.picker.colorschemes() end, { desc = "Colorscheme with Preview" })
+  snacks_keymap.set("n", "<leader>uC", function()
+    snacks.picker.colorschemes()
+  end, { desc = "Colorscheme with Preview" })
 
   -- Notification history
-  snacks_keymap.set("n", "<leader>un", function() snacks.notifier.show_history() end, { desc = "Notification History" })
-  snacks_keymap.set("n", "<leader>uN", function() snacks.notifier.hide() end, { desc = "Dismiss All Notifications" })
+  snacks_keymap.set("n", "<leader>un", function()
+    snacks.notifier.show_history()
+  end, { desc = "Notification History" })
+  snacks_keymap.set("n", "<leader>uN", function()
+    snacks.notifier.hide()
+  end, { desc = "Dismiss All Notifications" })
 else
   -- Manual toggles without snacks (already in general.lua)
 end
@@ -65,7 +73,7 @@ if require("nixCatsUtils").enableForCategory("util") then
 end
 
 -- Oil file manager (alternative explorer)
-map("n", "<leader>-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
+map("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
 
 -- Mini.map (if available)
 if require("nixCatsUtils").enableForCategory("editor") then
@@ -81,12 +89,10 @@ if require("nixCatsUtils").enableForCategory("editor") then
   end, { desc = "Focus Minimap" })
 end
 
--- Lazy/Mason/LSP management
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
-map("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
-
--- Paq sync (if not using Nix)
+-- Paq/Lazy/Mason (if not using Nix)
 if not require("nixCatsUtils").isNixCats then
+  map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+  map("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
   map("n", "<leader>cp", "<cmd>PaqSync<cr>", { desc = "Paq Sync" })
 end
 

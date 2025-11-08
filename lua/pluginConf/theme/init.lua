@@ -18,7 +18,7 @@ return {
   { -- LSP kind icons
     "lspkind.nvim",
     for_cat = {
-      cat = "ui.icons",
+      cat = "ui",
       default = true,
     },
     dep_of = {
@@ -29,7 +29,7 @@ return {
   {
     "nvim-web-devicons",
     for_cat = {
-      cat = "ui.theme",
+      cat = "ui",
       default = "true",
     },
     -- Don't lazy load since things that need us is not lazy loaded

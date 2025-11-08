@@ -5,7 +5,7 @@ return {
   {
     "nvim-treesitter-context",
     for_cat = {
-      "tools.treesitter",
+      "treesitter",
       default = true,
     },
     on_plugin = { "nvim-treesitter" },
@@ -20,7 +20,7 @@ return {
   {
     "nvim-treesitter",
     for_cat = {
-      cat = "tools.treesitter",
+      cat = "treesitter",
       default = true,
     },
     dep_of = {

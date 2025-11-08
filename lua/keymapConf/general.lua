@@ -10,16 +10,16 @@ map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr =
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+map("n", "<C-Left>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+map("n", "<C-Down>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+map("n", "<C-Up>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+map("n", "<C-Right>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
 -- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+map("n", "<C-j>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-k>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+map("n", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 
 -- Move Lines
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
@@ -126,16 +126,38 @@ local snacks = require("nixCatsUtils").enableForCategory("util") and require("sn
 
 if snacks then
   -- Using snacks for toggles
-  map("n", "<leader>us", function() snacks.toggle.option("spell"):toggle() end, { desc = "Toggle Spelling" })
-  map("n", "<leader>uw", function() snacks.toggle.option("wrap"):toggle() end, { desc = "Toggle Word Wrap" })
-  map("n", "<leader>uL", function() snacks.toggle.option("relativenumber"):toggle() end, { desc = "Toggle Relative Line Numbers" })
-  map("n", "<leader>ud", function() snacks.toggle.diagnostics():toggle() end, { desc = "Toggle Diagnostics" })
-  map("n", "<leader>ul", function() snacks.toggle.line_number():toggle() end, { desc = "Toggle Line Numbers" })
-  map("n", "<leader>uc", function() snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):toggle() end, { desc = "Toggle Conceal" })
-  map("n", "<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
-  map("n", "<leader>ub", function() snacks.toggle.option("background", { off = "light", on = "dark" }):toggle() end, { desc = "Toggle Background" })
+  map("n", "<leader>us", function()
+    snacks.toggle.option("spell"):toggle()
+  end, { desc = "Toggle Spelling" })
+  map("n", "<leader>uw", function()
+    snacks.toggle.option("wrap"):toggle()
+  end, { desc = "Toggle Word Wrap" })
+  map("n", "<leader>uL", function()
+    snacks.toggle.option("relativenumber"):toggle()
+  end, { desc = "Toggle Relative Line Numbers" })
+  map("n", "<leader>ud", function()
+    snacks.toggle.diagnostics():toggle()
+  end, { desc = "Toggle Diagnostics" })
+  map("n", "<leader>ul", function()
+    snacks.toggle.line_number():toggle()
+  end, { desc = "Toggle Line Numbers" })
+  map("n", "<leader>uc", function()
+    snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):toggle()
+  end, { desc = "Toggle Conceal" })
+  map("n", "<leader>uT", function()
+    if vim.b.ts_highlight then
+      vim.treesitter.stop()
+    else
+      vim.treesitter.start()
+    end
+  end, { desc = "Toggle Treesitter Highlight" })
+  map("n", "<leader>ub", function()
+    snacks.toggle.option("background", { off = "light", on = "dark" }):toggle()
+  end, { desc = "Toggle Background" })
   if vim.lsp.inlay_hint then
-    map("n", "<leader>uh", function() snacks.toggle.inlay_hints():toggle() end, { desc = "Toggle Inlay Hints" })
+    map("n", "<leader>uh", function()
+      snacks.toggle.inlay_hints():toggle()
+    end, { desc = "Toggle Inlay Hints" })
   end
 else
   -- Manual toggles without snacks
@@ -143,7 +165,9 @@ else
   map("n", "<leader>uw", "<cmd>setlocal wrap!<cr>", { desc = "Toggle Word Wrap" })
   map("n", "<leader>ul", "<cmd>setlocal number!<cr>", { desc = "Toggle Line Numbers" })
   map("n", "<leader>uL", "<cmd>setlocal relativenumber!<cr>", { desc = "Toggle Relative Line Numbers" })
-  map("n", "<leader>ud", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = "Toggle Diagnostics" })
+  map("n", "<leader>ud", function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+  end, { desc = "Toggle Diagnostics" })
   map("n", "<leader>uc", function()
     local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 2
     vim.opt_local.conceallevel = vim.o.conceallevel == 0 and conceallevel or 0
@@ -167,10 +191,18 @@ end
 
 -- LazyVim terminal mappings (if using snacks)
 if snacks then
-  map("n", "<leader>ft", function() snacks.terminal() end, { desc = "Terminal (Root Dir)" })
-  map("n", "<leader>fT", function() snacks.terminal(nil, { cwd = vim.fn.expand("%:p:h") }) end, { desc = "Terminal (cwd)" })
-  map("n", "<c-/>", function() snacks.terminal() end, { desc = "Terminal (Root Dir)" })
-  map("n", "<c-_>", function() snacks.terminal() end, { desc = "which_key_ignore" })
+  map("n", "<leader>ft", function()
+    snacks.terminal()
+  end, { desc = "Terminal (Root Dir)" })
+  map("n", "<leader>fT", function()
+    snacks.terminal(nil, { cwd = vim.fn.expand("%:p:h") })
+  end, { desc = "Terminal (cwd)" })
+  map("n", "<c-/>", function()
+    snacks.terminal()
+  end, { desc = "Terminal (Root Dir)" })
+  map("n", "<c-_>", function()
+    snacks.terminal()
+  end, { desc = "which_key_ignore" })
 
   -- Terminal mappings
   map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })

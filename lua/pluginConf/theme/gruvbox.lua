@@ -4,7 +4,7 @@
 return {
   "gruvbox.nvim",
   for_cat = {
-    cat = "ui.theme",
+    cat = "ui",
     default = true,
   },
   in_extra = {

@@ -2,9 +2,9 @@
 
 -- Needs to be setup before everything, leader key
 vim.api.nvim_set_keymap("", " ", "", { noremap = true })
-vim.api.nvim_set_keymap("", "<C-S-Space>", "", { noremap = true })
+vim.api.nvim_set_keymap("", "\\", "", { noremap = true })
 vim.g.mapleader = " "
-vim.g.maplocalleader = "<C-S-Space>"
+vim.g.maplocalleader = "\\"
 
 -- Copy pasting in wayland
 if os.getenv("WAYLAND_DISPLAY") and vim.fn.exepath("wl-copy") ~= "" then
@@ -22,72 +22,67 @@ if os.getenv("WAYLAND_DISPLAY") and vim.fn.exepath("wl-copy") ~= "" then
   }
 end
 
--- Display some whitespace characters
-vim.opt.list = true
-vim.opt.listchars = {
+local opt = vim.opt
+
+opt.autowrite = true
+opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus"
+opt.colorcolumn = "120" -- Set demarkation at 80 lines
+opt.completeopt = { "menu", "preview", "noselect" }
+opt.conceallevel = 2 -- Plugins need this
+opt.confirm = true
+opt.cpoptions:append("I") -- Don't delete new indent if cursor is moved
+opt.cursorcolumn = false -- Disable column highlight
+opt.cursorline = true -- Disable line highlight
+opt.expandtab = true -- whether to turn tabs into spaces or not
+opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
+opt.foldlevel = 99
+opt.foldmethod = "indent"
+opt.foldtext = ""
+opt.grepprg = "rg --vimgrep"
+opt.ignorecase = true
+opt.inccommand = "nosplit" -- preview incremental substitute
+opt.linebreak = true -- Wrap lines at convenient points
+opt.list = true
+opt.listchars = {
   tab = "» ",
   trail = "·",
   nbsp = "␣",
 }
-
--- Search options
-vim.opt.hlsearch = true
-vim.opt.inccommand = "split" -- Substitutions are previewed live
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.incsearch = true
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
-
--- Rendering options
-vim.opt.fileencoding = "utf-8"
-vim.opt.scrolloff = 5
-vim.opt.sidescrolloff = 5 -- If no wrap, keep this many lines off cursor
-vim.opt.colorcolumn = "80" -- Set demarkation at 80 lines
-vim.opt.wrap = false -- Don't wrap long lines
-vim.opt.linebreak = true -- If wrap, then don't split words
-vim.opt.conceallevel = 1 -- Plugins need this
-vim.opt.lazyredraw = false
-vim.opt.updatetime = 300
-vim.opt.timeoutlen = 2000 -- Need the timeout
-vim.opt.guifont = "Iosevka"
-
--- Columns and rows
-vim.opt.number = false -- Line numbers
-vim.opt.relativenumber = false -- Show relative numbers
-vim.opt.signcolumn = "yes" -- Always show sign column
-vim.opt.numberwidth = 4 -- Number column width
-vim.opt.cmdheight = 2 -- Number column width
-vim.opt.pumheight = 10 -- Number column width
-vim.opt.showtabline = 2 -- Show the top tabline even with a single tab
-
--- Navigation
-vim.opt.mouse = "a"
-vim.opt.whichwrap:append("<>[]") -- Allow traversing up/down from l/r movement
-
--- Indentation
-vim.opt.expandtab = true -- whether to turn tabs into spaces or not
-vim.opt.smartindent = false -- smart autoindenting for C programs
-vim.opt.shiftwidth = 4 -- default # of spaces for auto-indent step
-vim.opt.tabstop = 4 -- # of spaces to render for actual tabs
-vim.opt.softtabstop = 4 -- # of spaces to enter instead of tab in edit
-vim.opt.autoindent = true -- match indent of next line to prev line
-vim.opt.breakindent = true -- wrapped lines keep indent
-vim.opt.cpoptions:append("I") -- Don't delete new indent if cursor is moved
-vim.opt.showmatch = true -- Show matching brackets when cursor is over them
-
--- Behavior
-vim.opt.completeopt = { "menu", "preview", "noselect" }
-vim.opt.title = false -- Don't show title
-vim.opt.showmode = false -- Don't show mode
-vim.opt.termguicolors = true -- set term gui colors
-vim.opt.mat = 2 -- Blink period on matching brackets
-vim.opt.cursorline = false -- Disable line highlight
-vim.opt.cursorcolumn = false -- Disable column highlight
-vim.opt.splitbelow = true -- Force split direction
-vim.opt.splitright = true
-vim.opt.swapfile = true -- Keep swap files
-vim.opt.undofile = true -- Keep undo history
-vim.opt.backup = false -- Keep a backup of files
-vim.opt.writebackup = true -- First write to backup before writing file
-vim.opt.spell = false -- Turn off spellchecking
-vim.opt.sessionoptions = "blank,buffers,folds,globals,help,localoptions,options,sesdir,tabpages,terminal,winsize"
+opt.mouse = "a"
+opt.number = true -- Line numbers
+opt.numberwidth = 4 -- Number column width
+opt.pumblend = 10 -- Popup blend
+opt.pumheight = 10 -- Max number of entries in a popup
+opt.relativenumber = true -- Show relative numbers
+opt.ruler = false -- Disable the default ruler
+opt.scrolloff = 4
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+opt.shiftwidth = 2 -- default # of spaces for auto-indent step
+opt.showmode = false -- Don't show mode
+opt.showtabline = 2 -- Show the top tabline even with a single tab
+opt.sidescrolloff = 8 -- If no wrap, keep this many lines off cursor
+opt.signcolumn = "yes" -- Always show sign column
+opt.smartcase = true
+opt.smartindent = true
+opt.smoothscroll = true
+opt.softtabstop = 4 -- # of spaces to enter instead of tab in edit
+opt.spell = false -- Turn off spellchecking
+opt.spelllang = { "en" }
+opt.splitbelow = true -- Force split direction
+opt.splitkeep = "screen"
+opt.splitright = true
+opt.tabstop = 2 -- # of spaces to render for actual tabs
+opt.termguicolors = true -- set term gui colors
+opt.timeoutlen = 2000 -- Need the timeout
+opt.title = false -- Don't show title
+opt.undofile = true -- Keep undo history
+opt.undolevels = 10000
+opt.updatetime = 200
+opt.wrap = false -- Don't wrap long lines
