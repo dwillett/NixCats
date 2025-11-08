@@ -1,75 +1,66 @@
--- <nixCats>/lua/keymapConf/git.lua
--- <Leader>g: Git actions
-local gitsigns_keymap = require("lzextras").keymap("gitsigns.nvim")
-local snacks_keymap = require("lzextras").keymap("snacks.nvim")
+-- Git keymaps following LazyVim conventions
+-- https://www.lazyvim.org/keymaps#git
 
--- Gitsigns actions
-vim.keymap.set("n", "<Leader>gs", "<cmd>Gitsigns stage_hunk<CR>", { desc = "Stage hunk" })
-vim.keymap.set("n", "<Leader>gS", "<cmd>Gitsigns stage_buffer<CR>", { desc = "Stage buffer" })
-gitsigns_keymap.set("v", "<Leader>gs", function()
-  require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-end, { desc = "Stage selection" })
-vim.keymap.set("n", "<Leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
-vim.keymap.set("n", "<Leader>gR", "<cmd>Gitsigns reset_buffer<CR>", { desc = "Reset hunk" })
-gitsigns_keymap.set("v", "<Leader>gr", function()
-  require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-end, { desc = "Reset selection" })
-vim.keymap.set("n", "<Leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "Preview hunk" })
-vim.keymap.set("n", "<Leader>gi", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Inline preview hunk" })
-vim.keymap.set("n", "<Leader>gd", "<cmd>Gitsigns diffthis<CR>", { desc = "Show diff" })
-gitsigns_keymap.set("n", "<Leader>gD", function()
-  require("gitsigns").diffthis("~")
-end, { desc = "Show all diffs" })
-vim.keymap.set("n", "<Leader>gq", "<cmd>Gitsigns setqflist<CR>", { desc = "Set qf list for all" })
-gitsigns_keymap.set("n", "<Leader>gQ", function()
-  require("gitsigns").setqflist("all")
-end, { desc = "Set qf list for all" })
-vim.keymap.set("n", "<Leader>gb", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle line blame" })
-gitsigns_keymap.set("n", "<Leader>gB", function()
-  require("gitsigns").blame_line({ full = true })
-end, { desc = "Full blame line" })
-vim.keymap.set("n", "<Leader>gw", "<cmd>Gitsigns toggle_word_diff<CR>", { desc = "Toggle word diff" })
-vim.keymap.set("n", "<Leader>gx", "<cmd>Gitsigns toggle_deleted<CR>", { desc = "Toggle deleted" })
+local map = vim.keymap.set
 
--- Text object
-gitsigns_keymap.set({ "o", "x" }, "ih", require("gitsigns").select_hunk, { desc = "Git hunk" })
+-- Gitsigns integration (if available)
+if require("nixCatsUtils").enableForCategory("git") then
+  local gitsigns_keymap = require("lzextras").keymap("gitsigns.nvim")
 
--- Snacks gitbrowse
-snacks_keymap.set("n", "<Leader>gE", function()
-  require("snacks").gitbrowse.open()
-end, { desc = "Open repo in browser" })
-snacks_keymap.set("n", "<Leader>gg", function()
-  require("snacks").lazygit.open()
-end, { desc = "Open Lazygit" })
-snacks_keymap.set("n", "<Leader>gG", function()
-  require("snacks").lazygit.log()
-end, { desc = "Open Lazygit in log view" })
-snacks_keymap.set("n", "<Leader>g<C-g>", function()
-  require("snacks").lazygit.log_file()
-end, { desc = "Open Lazygit log of buffer" })
+  -- Hunk operations (LazyVim style - using gh prefix for hunks)
+  map("n", "<leader>ghs", "<cmd>Gitsigns stage_hunk<cr>", { desc = "Stage Hunk" })
+  map("n", "<leader>ghr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Reset Hunk" })
+  gitsigns_keymap.set("v", "<leader>ghs", function()
+    require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+  end, { desc = "Stage Hunk" })
+  gitsigns_keymap.set("v", "<leader>ghr", function()
+    require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+  end, { desc = "Reset Hunk" })
 
--- Pickers
-snacks_keymap.set("n", "<Leader>gf", function()
-  require("snacks").picker.git_files()
-end, { desc = "Fuzzy find files in repo" })
-snacks_keymap.set("n", "<Leader>g/", function()
-  require("snacks").picker.git_branches()
-end, { desc = "List of branches" })
-snacks_keymap.set("n", "<Leader>gl", function()
-  require("snacks").picker.git_log()
-end, { desc = "Git log" })
-snacks_keymap.set("n", "<Leader>gL", function()
-  require("snacks").picker.git_log_file()
-end, { desc = "Git log file" })
-snacks_keymap.set("n", "<Leader>g<C-l>", function()
-  require("snacks").picker.git_log_line()
-end, { desc = "Git log line" })
-snacks_keymap.set("n", "<Leader>go", function()
-  require("snacks").picker.git_status()
-end, { desc = "Git status (Overview)" })
-snacks_keymap.set("n", "<Leader>gu", function()
-  require("snacks").picker.git_stash()
-end, { desc = "Git stash (undone)" })
-snacks_keymap.set("n", "<Leader>gh", function()
-  require("snacks").picker.git_diff()
-end, { desc = "Git diff (hunks)" })
+  map("n", "<leader>ghS", "<cmd>Gitsigns stage_buffer<cr>", { desc = "Stage Buffer" })
+  map("n", "<leader>ghu", "<cmd>Gitsigns undo_stage_hunk<cr>", { desc = "Undo Stage Hunk" })
+  map("n", "<leader>ghR", "<cmd>Gitsigns reset_buffer<cr>", { desc = "Reset Buffer" })
+  map("n", "<leader>ghp", "<cmd>Gitsigns preview_hunk_inline<cr>", { desc = "Preview Hunk Inline" })
+
+  -- Blame operations
+  gitsigns_keymap.set("n", "<leader>ghb", function()
+    require("gitsigns").blame_line({ full = true })
+  end, { desc = "Blame Line" })
+  map("n", "<leader>ghB", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle Line Blame" })
+
+  -- Diff operations
+  map("n", "<leader>ghd", "<cmd>Gitsigns diffthis<cr>", { desc = "Diff This" })
+  gitsigns_keymap.set("n", "<leader>ghD", function()
+    require("gitsigns").diffthis("~")
+  end, { desc = "Diff This ~" })
+
+  -- Navigation
+  map("n", "]h", "<cmd>Gitsigns next_hunk<cr>", { desc = "Next Hunk" })
+  map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", { desc = "Prev Hunk" })
+
+  -- Text object
+  gitsigns_keymap.set({ "o", "x" }, "ih", require("gitsigns").select_hunk, { desc = "GitSigns Select Hunk" })
+end
+
+-- Snacks git integration (if available)
+if require("nixCatsUtils").enableForCategory("util") then
+  local snacks = require("snacks")
+  local snacks_keymap = require("lzextras").keymap("snacks.nvim")
+
+  -- LazyGit integration
+  snacks_keymap.set("n", "<leader>gg", function() snacks.lazygit() end, { desc = "LazyGit (Root Dir)" })
+  snacks_keymap.set("n", "<leader>gG", function() snacks.lazygit({ cwd = vim.fn.expand("%:p:h") }) end, { desc = "LazyGit (cwd)" })
+  snacks_keymap.set("n", "<leader>gf", function() snacks.lazygit.log_file() end, { desc = "LazyGit Current File History" })
+  snacks_keymap.set("n", "<leader>gl", function() snacks.lazygit.log() end, { desc = "LazyGit Log" })
+
+  -- Git browse
+  snacks_keymap.set({ "n", "x" }, "<leader>gB", function() snacks.gitbrowse() end, { desc = "Git Browse (open)" })
+  snacks_keymap.set({ "n", "x" }, "<leader>gY", function()
+    snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = true })
+  end, { desc = "Git Browse (copy)" })
+
+  -- Git blame
+  snacks_keymap.set("n", "<leader>gb", function() snacks.git.blame_line() end, { desc = "Git Blame Line" })
+
+  -- Note: Most git file operations moved to search.lua under <leader>s prefix
+end
