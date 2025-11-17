@@ -26,14 +26,14 @@ local opt = vim.opt
 
 opt.autowrite = true
 opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus"
-opt.colorcolumn = "120" -- Set demarkation at 80 lines
+opt.colorcolumn = "120"
 opt.completeopt = { "menu", "preview", "noselect" }
 opt.conceallevel = 2 -- Plugins need this
 opt.confirm = true
 opt.cpoptions:append("I") -- Don't delete new indent if cursor is moved
-opt.cursorcolumn = false -- Disable column highlight
-opt.cursorline = true -- Disable line highlight
-opt.expandtab = true -- whether to turn tabs into spaces or not
+opt.cursorcolumn = false
+opt.cursorline = true
+opt.expandtab = true
 opt.fillchars = {
   foldopen = "",
   foldclose = "",

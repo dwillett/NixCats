@@ -31,6 +31,7 @@ require("nixCatsUtils.catPaq").setup({
   { "stevearc/oil.nvim" },
   { "folke/snacks.nvim" },
   -- UI
+  { "MunifTanjim/nui.nvim", opt = true },
   { "nvim-tree/nvim-web-devicons" },
 
   -- Lazy loaded plugins
@@ -69,7 +70,6 @@ require("nixCatsUtils.catPaq").setup({
   { "nvim-treesitter/nvim-treesitter-refactor", opt = true },
   { "nvim-treesitter/nvim-treesitter-textobjects", opt = true },
   -- Ui
-  { "MunifTanjim/nui.nvim", opt = true },
   { "catppuccin/nvim", opt = true },
   { "scottmckendry/cyberdream.nvim", opt = true },
   { "ellisonleao/gruvbox.nvim", opt = true },

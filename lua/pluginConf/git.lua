@@ -13,7 +13,7 @@ return {
     event = { "DeferredUIEnter" },
     after = function(plugin)
       require("gitsigns").setup({
-        numhl = true,
+        numhl = false,
         attach_to_untracked = false,
         signs = {
           add = { text = "▎" },

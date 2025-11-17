@@ -4,7 +4,7 @@
 local map = vim.keymap.set
 
 -- Gitsigns integration (if available)
-if require("nixCatsUtils").enableForCategory("git") then
+if require("nixCatsUtils").enableForCategory("editor") then
   local gitsigns_keymap = require("lzextras").keymap("gitsigns.nvim")
 
   -- Hunk operations (LazyVim style - using gh prefix for hunks)
@@ -48,19 +48,50 @@ if require("nixCatsUtils").enableForCategory("util") then
   local snacks_keymap = require("lzextras").keymap("snacks.nvim")
 
   -- LazyGit integration
-  snacks_keymap.set("n", "<leader>gg", function() snacks.lazygit() end, { desc = "LazyGit (Root Dir)" })
-  snacks_keymap.set("n", "<leader>gG", function() snacks.lazygit({ cwd = vim.fn.expand("%:p:h") }) end, { desc = "LazyGit (cwd)" })
-  snacks_keymap.set("n", "<leader>gf", function() snacks.lazygit.log_file() end, { desc = "LazyGit Current File History" })
-  snacks_keymap.set("n", "<leader>gl", function() snacks.lazygit.log() end, { desc = "LazyGit Log" })
+  snacks_keymap.set("n", "<leader>gg", function()
+    snacks.lazygit()
+  end, { desc = "LazyGit (Root Dir)" })
+  snacks_keymap.set("n", "<leader>gG", function()
+    snacks.lazygit({ cwd = vim.fn.expand("%:p:h") })
+  end, { desc = "LazyGit (cwd)" })
+  snacks_keymap.set("n", "<leader>gf", function()
+    snacks.lazygit.log_file()
+  end, { desc = "LazyGit Current File History" })
+  snacks_keymap.set("n", "<leader>gl", function()
+    snacks.lazygit.log()
+  end, { desc = "LazyGit Log" })
 
   -- Git browse
-  snacks_keymap.set({ "n", "x" }, "<leader>gB", function() snacks.gitbrowse() end, { desc = "Git Browse (open)" })
+  snacks_keymap.set({ "n", "x" }, "<leader>gB", function()
+    snacks.gitbrowse()
+  end, { desc = "Git Browse (open)" })
   snacks_keymap.set({ "n", "x" }, "<leader>gY", function()
-    snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = true })
+    snacks.gitbrowse({
+      open = function(url)
+        vim.fn.setreg("+", url)
+      end,
+      notify = true,
+    })
   end, { desc = "Git Browse (copy)" })
 
   -- Git blame
-  snacks_keymap.set("n", "<leader>gb", function() snacks.git.blame_line() end, { desc = "Git Blame Line" })
+  snacks_keymap.set("n", "<leader>gb", function()
+    snacks.git.blame_line()
+  end, { desc = "Git Blame Line" })
+
+  -- gh
+  snacks_keymap.set("n", "<leader>gi", function()
+    Snacks.picker.gh_issue()
+  end, { desc = "GitHub Issues (open)" })
+  snacks_keymap.set("n", "<leader>gI", function()
+    Snacks.picker.gh_issue({ state = "all" })
+  end, { desc = "GitHub Issues (all)" })
+  snacks_keymap.set("n", "<leader>gp", function()
+    Snacks.picker.gh_pr()
+  end, { desc = "GitHub Pull Requests (open)" })
+  snacks_keymap.set("n", "<leader>gP", function()
+    Snacks.picker.gh_pr({ state = "all" })
+  end, { desc = "GitHub Pull Requests (all)" })
 
   -- Note: Most git file operations moved to search.lua under <leader>s prefix
 end

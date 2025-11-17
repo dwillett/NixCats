@@ -1,14 +1,6 @@
 # The category definitions
 # Import inputs from the main flake, and return the function
-{inputs, ...}: {
-  pkgs,
-  settings,
-  categories,
-  extra,
-  name,
-  mkNvimPlugin,
-  ...
-} @ packageDef: {
+{...}: {pkgs, ...}: {
   # <category>
   # ├─ coding
   # ├─ debug
@@ -66,6 +58,8 @@
       snacks-nvim
     ];
     ui = [
+      nui-nvim
+      noice-nvim
       nvim-web-devicons
     ];
   };
@@ -113,7 +107,6 @@
       nvim-treesitter-textobjects
     ];
     ui = [
-      nui-nvim
       catppuccin-nvim
       cyberdream-nvim
       gruvbox-nvim
@@ -126,6 +119,7 @@
       tabby-nvim
       aerial-nvim
       lspkind-nvim
+      tint-nvim
     ];
     util = [
       plenary-nvim

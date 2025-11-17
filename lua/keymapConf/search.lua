@@ -154,6 +154,20 @@ end
 
 -- Search and replace (using default vim or substitute plugin)
 map({ "n", "x" }, "<leader>sr", ":%s/<C-r><C-w>//g<left><left>", { desc = "Replace word under cursor" })
+if require("nixCatsUtils").enableForCategory("editor") then
+  local grug_ok, grug = pcall(require, "grug-far")
+  if grug_ok then
+    map({ "n", "x" }, "<leader>sr", function()
+      local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+      grug.open({
+        transient = true,
+        prefills = {
+          filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+        },
+      })
+    end, { desc = "Search and Replace" })
+  end
+end
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 
 -- Flash search integration (if available)
@@ -178,4 +192,3 @@ if require("nixCatsUtils").enableForCategory("editor") then
     end, { desc = "Toggle Flash Search" })
   end
 end
-

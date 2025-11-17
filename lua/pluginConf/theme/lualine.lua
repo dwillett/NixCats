@@ -12,159 +12,137 @@ return {
   dep_of = { "tabby.nvim" },
   on_require = { "lualine" },
   after = function(plugin)
-    -- Trouble winbar component, with loading guard
-    -- FIX: winbar fix from;
-    -- https://github.com/folke/trouble.nvim/issues/569
-    -- https://github.com/nvim-lualine/lualine.nvim/pull/1368
-    -- https://github.com/folke/trouble.nvim/pull/616
-    --[[
-    vim.api.nvim_set_hl(0, "WinBar", { link = "lualine_c_normal" })
+    local utils = require("lualine.utils.utils")
+    local highlight = require("lualine.highlight")
 
-    local troubleLine = {}
-    local _ok, _trouble = pcall(require, 'trouble')
-    if _ok then
-      troubleLine = _trouble.statusline({
-        mode = 'lsp_document_symbols',
-        groups = {},
-        title = false,
-        filter = { range = true, },
-        format = "{kind_icon}{symbol.name:Normal}",
-        hl_group = 'lualine_b_normal',
-      })
-    else
-      troubleLine.get = ''
-      troubleLine.has = false
+    local diagnostics_message = require("lualine.component"):extend()
+
+    diagnostics_message.default = {
+      colors = {
+        error = utils.extract_color_from_hllist(
+          { "fg", "sp" },
+          { "DiagnosticError", "LspDiagnosticsDefaultError", "DiffDelete" },
+          "#e32636"
+        ),
+        warning = utils.extract_color_from_hllist(
+          { "fg", "sp" },
+          { "DiagnosticWarn", "LspDiagnosticsDefaultWarning", "DiffText" },
+          "#ffa500"
+        ),
+        info = utils.extract_color_from_hllist(
+          { "fg", "sp" },
+          { "DiagnosticInfo", "LspDiagnosticsDefaultInformation", "DiffChange" },
+          "#ffffff"
+        ),
+        hint = utils.extract_color_from_hllist(
+          { "fg", "sp" },
+          { "DiagnosticHint", "LspDiagnosticsDefaultHint", "DiffAdd" },
+          "#273faf"
+        ),
+      },
+    }
+    function diagnostics_message:init(options)
+      diagnostics_message.super:init(options)
+      self.options.colors = vim.tbl_extend("force", diagnostics_message.default.colors, self.options.colors or {})
+      self.highlights = { error = "", warn = "", info = "", hint = "" }
+      self.highlights.error = highlight.create_component_highlight_group(
+        { fg = self.options.colors.error },
+        "diagnostics_message_error",
+        self.options
+      )
+      self.highlights.warn = highlight.create_component_highlight_group(
+        { fg = self.options.colors.warn },
+        "diagnostics_message_warn",
+        self.options
+      )
+      self.highlights.info = highlight.create_component_highlight_group(
+        { fg = self.options.colors.info },
+        "diagnostics_message_info",
+        self.options
+      )
+      self.highlights.hint = highlight.create_component_highlight_group(
+        { fg = self.options.colors.hint },
+        "diagnostics_message_hint",
+        self.options
+      )
     end
-    --]]
 
-    -- Pomodoro timer for statusbar
-    local pomoLine = function()
-      local ok, pomo = pcall(require, "pomo")
-      if not ok then
+    function diagnostics_message:update_status(is_focused)
+      local r, _ = unpack(vim.api.nvim_win_get_cursor(0))
+      local diagnostics = vim.diagnostic.get(0, { lnum = r - 1 })
+      if #diagnostics > 0 then
+        local top = diagnostics[1]
+        for _, d in ipairs(diagnostics) do
+          if d.severity < top.severity then
+            top = d
+          end
+        end
+        local icons = { " ", " ", " ", " " }
+        local hl = {
+          self.highlights.error,
+          self.highlights.warn,
+          self.highlights.info,
+          self.highlights.hint,
+        }
+        return highlight.component_format_highlight(hl[top.severity])
+          .. icons[top.severity]
+          .. " "
+          .. utils.stl_escape(top.message)
+      else
         return ""
       end
-      local timer = pomo.get_first_to_finish()
-      if timer == nil then
-        return ""
-      end
-      return "󰄉 " .. tostring(timer)
     end
 
-    -- Statusbar config
     require("lualine").setup({
       options = {
+        theme = "catppuccin",
         icons_enabled = true,
-        theme = "auto",
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-        always_divide_middle = true,
-        globalstatus = true,
-        disabled_filetypes = {
-          statusline = {},
-          winbar = {
-            "aerial-nav",
-          },
+        component_separators = {
+          left = "",
+          right = "",
         },
-      },
-      -- The configuration
-      tabline = {},
-      winbar = {
-        lualine_a = {},
-        lualine_b = {
-          "aerial",
-          --[[
-          { troubleLine.get,
-            cond = troubleLine.has,
-          },
-          --]]
-        },
-        lualine_x = {},
-        lualine_y = {
-          {
-            "filename",
-            file_status = true,
-            newfile_status = true,
-            path = 1,
-            shorting_target = 40,
-            symbols = {
-              modified = " ",
-              readonly = " ",
-              unnamed = " ",
-              newfile = " ",
-            },
-          },
-        },
-        lualine_z = {
-          {
-            "filetype",
-            icon_only = false,
-            colored = false,
-          },
-        },
-      },
-      inactive_winbar = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {
-          {
-            "filename",
-            file_status = true,
-            newfile_status = true,
-            path = 1,
-            shorting_target = 40,
-            symbols = {
-              modified = " ",
-              readonly = " ",
-              unnamed = " ",
-              newfile = " ",
-            },
-          },
-          {
-            "filetype",
-            icon_only = true,
-            colored = true,
-          },
+        section_separators = {
+          left = "",
+          right = "",
         },
       },
       sections = {
         lualine_a = {
-          "branch",
+          "mode",
         },
         lualine_b = {
-          "filetype",
+          "branch",
           "diff",
-          {
-            "diagnostics",
-            sources = {
-              "nvim_lsp",
-              "nvim_diagnostic",
-            },
-          },
         },
         lualine_c = {
           {
-            "buffers",
-            max_length = vim.o.columns * 2 / 3,
-            filetype_names = {
-              TelescopePrompt = "󰍉 ",
-              dashboard = "󰨝 ",
+            diagnostics_message,
+            colors = {
+              error = "#BF616A",
+              warn = "#EBCB8B",
+              info = "#A3BE8C",
+              hint = "#88C0D0",
             },
           },
         },
         lualine_x = {
-          pomoLine,
+          "encoding",
+          "filetype",
         },
         lualine_y = {
-          "selectioncount",
-          "searchcount",
+          "progress",
         },
         lualine_z = {
-          "progress",
           "location",
-          "mode",
         },
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { "filename" },
+        lualine_x = { "location" },
+        lualine_y = {},
+        lualine_z = {},
       },
     })
   end,

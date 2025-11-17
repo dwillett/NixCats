@@ -5,12 +5,13 @@
 require("keymapConf.general")
 
 -- Load functionality-specific keymaps
-require("keymapConf.lsp")        -- LSP keymaps (replaces diagnostics + symbols)
-require("keymapConf.git")        -- Git operations
-require("keymapConf.search")     -- Search and find (replaces picker)
-require("keymapConf.ui")         -- UI toggles and tools
-require("keymapConf.buffers")    -- Buffer management (extracted from navigation)
-require("keymapConf.debug")      -- Debug keymaps (if DAP enabled)
+require("keymapConf.lsp") -- LSP keymaps (replaces diagnostics + symbols)
+require("keymapConf.git") -- Git operations
+require("keymapConf.search") -- Search and find (replaces picker)
+require("keymapConf.noice") -- Search and find (replaces picker)
+require("keymapConf.ui") -- UI toggles and tools
+require("keymapConf.buffers") -- Buffer management (extracted from navigation)
+require("keymapConf.debug") -- Debug keymaps (if DAP enabled)
 
 -- Load which-key group names following LazyVim conventions
 local wk = require("which-key")
@@ -23,6 +24,7 @@ wk.add({
   { "<leader>gh", group = "hunks" },
   { "<leader>q", group = "quit/session" },
   { "<leader>s", group = "search" },
+  { "<leader>sn", group = "noice" },
   { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
   { "<leader>w", group = "windows" },
   { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
