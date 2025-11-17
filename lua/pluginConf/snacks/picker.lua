@@ -6,11 +6,8 @@ return {
   prompt = " ",
   focus = "input",
   layout = {
-    cycle = true,
-    --- Use the default layout or vertical if the window is too narrow
-    preset = function()
-      return vim.o.columns >= 120 and "default" or "vertical"
-    end,
+    preset = "ivy",
+    position = "bottom",
   },
   matcher = {
     fuzzy = true, -- use fuzzy matching

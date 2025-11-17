@@ -40,7 +40,7 @@
       # Grab all inputs named `plugins-<pluginName>`
       (utils.standardPluginOverlay inputs)
       # Apply nightly overlay to pull from neovim-nightly
-      inputs.neovim-nightly-overlay.overlays.default
+      # inputs.neovim-nightly-overlay.overlays.default
     ];
 
     # Category definitions are here; this variable should be a function!
