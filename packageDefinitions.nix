@@ -87,12 +87,15 @@
       lsp = false;
       markdown = false;
       treesitter = true;
-      ui = true;
+      ui = false;
       util = true;
     };
     extra = {
       # Just a marker to make sure some behavior is disabled
       weAreOld = true;
+      colorscheme = {
+        name = "";
+      };
     };
   };
 }
