@@ -97,6 +97,7 @@ return {
       options = {
         theme = "catppuccin",
         icons_enabled = true,
+        globalstatus = true,
         component_separators = {
           left = "",
           right = "",
@@ -113,6 +114,7 @@ return {
         lualine_b = {
           "branch",
           "diff",
+          "filename",
         },
         lualine_c = {
           {
@@ -128,6 +130,19 @@ return {
         lualine_x = {
           "encoding",
           "filetype",
+          function()
+            local ok, pomo = pcall(require, "pomo")
+            if not ok then
+              return ""
+            end
+
+            local timer = pomo.get_first_to_finish()
+            if timer == nil then
+              return ""
+            end
+
+            return "󰄉 " .. tostring(timer)
+          end,
         },
         lualine_y = {
           "progress",

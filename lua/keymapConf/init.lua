@@ -12,6 +12,7 @@ require("keymapConf.noice") -- Search and find (replaces picker)
 require("keymapConf.ui") -- UI toggles and tools
 require("keymapConf.buffers") -- Buffer management (extracted from navigation)
 require("keymapConf.debug") -- Debug keymaps (if DAP enabled)
+require("keymapConf.tabby") -- Tabby
 
 -- Load which-key group names following LazyVim conventions
 local wk = require("which-key")
