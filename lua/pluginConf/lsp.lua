@@ -15,4 +15,10 @@ return {
     "LspRestart",
   },
   on_require = { "lspconfig" },
+  after = function(plugin)
+    vim.lsp.config("sorbet", {
+      cmd = { "bundle", "exec", "srb", "tc", "--lsp" },
+    })
+    vim.lsp.enable("sorbet")
+  end,
 }

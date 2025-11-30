@@ -12,6 +12,7 @@ return {
       "mkdnflow.nvim",
       "obsidian.nvim",
       "telescope.nvim",
+      "neotest",
     },
     on_require = { "plenary" },
   },

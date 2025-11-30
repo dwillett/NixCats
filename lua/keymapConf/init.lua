@@ -26,6 +26,7 @@ wk.add({
   { "<leader>q", group = "quit/session" },
   { "<leader>s", group = "search" },
   { "<leader>sn", group = "noice" },
+  { "<leader>t", group = "test" },
   { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
   { "<leader>w", group = "windows" },
   { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },

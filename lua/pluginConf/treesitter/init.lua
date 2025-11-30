@@ -27,7 +27,7 @@ return {
       "aerial.nvim",
       "render-markdown.nvim",
     },
-    event = "DeferredUIEnter",
+    on_require = { "nvim-treesitter" },
     load = function(name)
       vim.cmd.packadd(name)
       vim.cmd.packadd("nvim-treesitter-refactor")

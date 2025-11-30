@@ -14,6 +14,10 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
     # ----- External Plugins ----- #
+    plugins-shadowenv-vim = {
+      url = "github:Shopify/shadowenv.vim";
+      flake = false;
+    };
   };
 
   outputs = {

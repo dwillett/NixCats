@@ -48,6 +48,7 @@ return {
     },
     dep_of = {
       "nvim-dap-ui",
+      "neotest",
     },
   },
 }

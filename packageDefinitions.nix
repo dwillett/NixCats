@@ -43,6 +43,7 @@
       formatting = true;
       lsp = true;
       markdown = true;
+      testing = true;
       treesitter = true;
       ui = true;
       util = true;
@@ -86,6 +87,7 @@
       formatting = true;
       lsp = false;
       markdown = false;
+      testing = false;
       treesitter = true;
       ui = false;
       util = true;

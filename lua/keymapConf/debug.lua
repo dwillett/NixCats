@@ -8,6 +8,7 @@ if require("nixCatsUtils").enableForCategory("debug") then
   -- DAP keymaps following LazyVim conventions
   local dap_keymap = require("lzextras").keymap("nvim-dap")
   local dap_ui_keymap = require("lzextras").keymap("nvim-dap-ui")
+  local neotest_keymap = require("lzextras").keymap("neotest")
 
   -- Basic DAP controls
   dap_keymap.set("n", "<leader>db", function()
@@ -90,24 +91,52 @@ if require("nixCatsUtils").enableForCategory("debug") then
   end
 
   -- Function key mappings (following your existing conventions)
-  dap_keymap.set("n", "<F5>", function() require("dap").continue() end, { desc = "Debug: Start/Continue" })
-  dap_keymap.set("n", "<S-F5>", function() require("dap").terminate() end, { desc = "Debug: Stop" })
-  dap_keymap.set("n", "<F9>", function() require("dap").toggle_breakpoint() end, { desc = "Debug: Toggle Breakpoint" })
-  dap_keymap.set("n", "<F10>", function() require("dap").step_over() end, { desc = "Debug: Step Over" })
-  dap_keymap.set("n", "<F11>", function() require("dap").step_into() end, { desc = "Debug: Step Into" })
-  dap_keymap.set("n", "<S-F11>", function() require("dap").step_out() end, { desc = "Debug: Step Out" })
-end
+  dap_keymap.set("n", "<F5>", function()
+    require("dap").continue()
+  end, { desc = "Debug: Start/Continue" })
+  dap_keymap.set("n", "<S-F5>", function()
+    require("dap").terminate()
+  end, { desc = "Debug: Stop" })
+  dap_keymap.set("n", "<F9>", function()
+    require("dap").toggle_breakpoint()
+  end, { desc = "Debug: Toggle Breakpoint" })
+  dap_keymap.set("n", "<F10>", function()
+    require("dap").step_over()
+  end, { desc = "Debug: Step Over" })
+  dap_keymap.set("n", "<F11>", function()
+    require("dap").step_into()
+  end, { desc = "Debug: Step Into" })
+  dap_keymap.set("n", "<S-F11>", function()
+    require("dap").step_out()
+  end, { desc = "Debug: Step Out" })
 
--- Testing keymaps (if neotest is available)
-if require("nixCatsUtils").enableForCategory("testing") then
-  local neotest_keymap = require("lzextras").keymap("neotest")
+  map("n", "<leader>ups", function()
+    vim.cmd([[
+      :profile start /tmp/nvim-profile.log
+      :profile func *
+      :profile file *
+    ]])
+  end, { desc = "Profile Start" })
+
+  map("n", "<leader>upe", function()
+    vim.cmd([[
+      :profile stop
+      :e /tmp/nvim-profile.log
+    ]])
+  end, { desc = "Profile End" })
 
   -- Test operations
-  neotest_keymap.set("n", "<leader>tr", function()
+  neotest_keymap.set("n", "<leader>tc", function()
     require("neotest").run.run()
+    require("neotest").output.open({ enter = false }) -- Auto-open output
   end, { desc = "Run Nearest" })
 
-  neotest_keymap.set("n", "<leader>tR", function()
+  neotest_keymap.set("n", "<leader>tC", function()
+    vim.cmd("noautocmd write")
+    require("neotest").run.run({ strategy = "dap" }) -- Auto-open output
+  end, { desc = "Debug Nearest" })
+
+  neotest_keymap.set("n", "<leader>tf", function()
     require("neotest").run.run(vim.fn.expand("%"))
   end, { desc = "Run File" })
 

@@ -8,6 +8,7 @@
   # ├─ formatting
   # ├─ lsp
   # ├─ markdown
+  # ├─ testing
   # ├─ treesitter
   # ├─ ui
   # └─ util
@@ -27,6 +28,7 @@
       nixd
       ruff
       ruby-lsp
+      shadowenv
       nodePackages.typescript-language-server
     ];
     treesitter = [
@@ -51,6 +53,15 @@
   # Plugins that don't need lazy loading
   startupPlugins = with pkgs.vimPlugins; {
     # Main plugins to have
+    lsp = [
+      pkgs.neovimPlugins.shadowenv-vim
+    ];
+    testing = [
+      FixCursorHold-nvim
+    ];
+    treesitter = [
+      nvim-treesitter.withAllGrammars
+    ];
     util = [
       lze
       lzextras
@@ -100,8 +111,13 @@
       glow-nvim
       render-markdown-nvim
     ];
+    testing = [
+      neotest
+      neotest-minitest
+      neotest-plenary
+      neotest-rspec
+    ];
     treesitter = [
-      nvim-treesitter.withAllGrammars
       nvim-treesitter-context
       nvim-treesitter-refactor
       nvim-treesitter-textobjects
