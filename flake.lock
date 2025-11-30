@@ -104,6 +104,22 @@
         "type": "github"
       }
     },
+    "plugins-neotest-ruby-minitest": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764526288,
+        "narHash": "sha256-FYvDTob7+yHiKtszyxfbFZqWbpTzWS7kz+PmeFApb8I=",
+        "owner": "dwillett",
+        "repo": "neotest-ruby-minitest",
+        "rev": "1a4b03937064cc8392706cbdd17638c6778f7f2c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dwillett",
+        "repo": "neotest-ruby-minitest",
+        "type": "github"
+      }
+    },
     "plugins-shadowenv-vim": {
       "flake": false,
       "locked": {
@@ -125,6 +141,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_2",
+        "plugins-neotest-ruby-minitest": "plugins-neotest-ruby-minitest",
         "plugins-shadowenv-vim": "plugins-shadowenv-vim"
       }
     }

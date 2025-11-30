@@ -113,7 +113,7 @@
     ];
     testing = [
       neotest
-      neotest-minitest
+      pkgs.neovimPlugins.neotest-ruby-minitest
       neotest-plenary
       neotest-rspec
     ];

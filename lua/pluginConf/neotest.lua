@@ -18,7 +18,7 @@ return {
     load = function(name)
       vim.cmd.packadd(name)
       vim.cmd.packadd("neotest-plenary")
-      vim.cmd.packadd("neotest-minitest")
+      vim.cmd.packadd("neotest-ruby-minitest")
       vim.cmd.packadd("neotest-rspec")
     end,
     event = "BufAdd */*test*/",
@@ -84,8 +84,15 @@ return {
       end
 
       require("neotest").setup({
+        log_level = vim.log.levels.DEBUG,
         adapters = {
-          require("neotest-minitest"),
+          require("neotest-ruby-minitest")({
+            command = "bundle exec ruby -Itest",
+            env = {
+              SPEC = "true",
+              MINITEST_JSON = "1",
+            },
+          }),
           require("neotest-rspec"),
         },
         icons = {
@@ -94,9 +101,6 @@ return {
           failed = "✗",
           skipped = "○",
           unknown = "?",
-        },
-        diagnostic = {
-          enabled = false,
         },
         discovery = {
           enabled = false,
@@ -110,11 +114,9 @@ return {
         status = {
           enabled = true,
           virtual_text = false,
-          signs = false,
         },
         output = {
           enabled = true,
-          open_on_run = true,
         },
         output_panel = {
           enabled = true,

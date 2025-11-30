@@ -18,6 +18,10 @@
       url = "github:Shopify/shadowenv.vim";
       flake = false;
     };
+    plugins-neotest-ruby-minitest = {
+      url = "github:dwillett/neotest-ruby-minitest";
+      flake = false;
+    };
   };
 
   outputs = {
