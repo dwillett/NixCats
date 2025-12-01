@@ -87,6 +87,7 @@
     debug = [
       nvim-nio
       nvim-dap
+      pkgs.neovimPlugins.nvim-dap-ruby
       nvim-dap-ui
       nvim-dap-virtual-text
     ];

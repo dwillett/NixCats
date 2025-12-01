@@ -18,8 +18,13 @@
       url = "github:Shopify/shadowenv.vim";
       flake = false;
     };
+    plugins-nvim-dap-ruby = {
+      url = "github:suketa/nvim-dap-ruby";
+      flake = false;
+    };
     plugins-neotest-ruby-minitest = {
       url = "github:dwillett/neotest-ruby-minitest";
+      # url = "git+file:///Users/willett/src/github.com/dwillett/neotest-ruby-minitest";
       flake = false;
     };
   };

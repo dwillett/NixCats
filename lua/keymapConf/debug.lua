@@ -7,7 +7,6 @@ local map = vim.keymap.set
 if require("nixCatsUtils").enableForCategory("debug") then
   -- DAP keymaps following LazyVim conventions
   local dap_keymap = require("lzextras").keymap("nvim-dap")
-  local dap_ui_keymap = require("lzextras").keymap("nvim-dap-ui")
   local neotest_keymap = require("lzextras").keymap("neotest")
 
   -- Basic DAP controls
@@ -77,15 +76,15 @@ if require("nixCatsUtils").enableForCategory("debug") then
 
   -- DAP UI specific keymaps
   if require("nixCatsUtils").enableForCategory("debug") then
-    dap_ui_keymap.set("n", "<leader>du", function()
+    dap_keymap.set("n", "<leader>du", function()
       require("dapui").toggle({})
     end, { desc = "Dap UI" })
 
-    dap_ui_keymap.set("n", "<leader>de", function()
+    dap_keymap.set("n", "<leader>de", function()
       require("dapui").eval()
     end, { desc = "Eval" })
 
-    dap_ui_keymap.set("v", "<leader>de", function()
+    dap_keymap.set("v", "<leader>de", function()
       require("dapui").eval()
     end, { desc = "Eval" })
   end
