@@ -107,11 +107,11 @@
     "plugins-neotest-ruby-minitest": {
       "flake": false,
       "locked": {
-        "lastModified": 1764619624,
-        "narHash": "sha256-4QJ4ptGBtqSl3dCtpZDeX83K2ViZbl2LDCRiLKOsfmU=",
+        "lastModified": 1764623121,
+        "narHash": "sha256-pOGC11On5vzflX4KujZd51ha33bR2uYlkE8Lm+JUcU8=",
         "owner": "dwillett",
         "repo": "neotest-ruby-minitest",
-        "rev": "990187e583ca621e378ed26ecde932e0cce8bd7f",
+        "rev": "03f0501995aa72af24e088bb92580bbe69ba960b",
         "type": "github"
       },
       "original": {
