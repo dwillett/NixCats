@@ -60,12 +60,12 @@ return {
         virt_text_win_col = nil,
       })
 
-      dap.adapters.ruby = function(callback)
+      -- Custom adapter for attaching to rdbg sockets
+      dap.adapters.ruby_attach = function(callback)
         vim.ui.select(vim.fn.readdir("/tmp/ruby-debug"), { prompt = "Select socket" }, function(pipe)
           if not pipe then
             return
           end
-
           callback({
             type = "pipe",
             pipe = "/tmp/ruby-debug/" .. pipe,
@@ -73,13 +73,12 @@ return {
         end)
       end
 
-      dap.configurations.ruby = {
-        {
-          name = "rdbg-attach",
-          request = "attach",
-          type = "ruby",
-        },
-      }
+      -- Add attach configuration to existing ruby configurations from nvim-dap-ruby
+      table.insert(dap.configurations.ruby, {
+        name = "rdbg-attach",
+        request = "attach",
+        type = "ruby_attach",
+      })
     end,
   },
   {
