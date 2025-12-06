@@ -17,6 +17,7 @@ require("keymapConf.tabby") -- Tabby
 -- Load which-key group names following LazyVim conventions
 local wk = require("which-key")
 wk.add({
+  { "<leader>a", group = "ai" },
   { "<leader>b", group = "buffer" },
   { "<leader>c", group = "code" },
   { "<leader>d", group = "debug" },
@@ -24,6 +25,7 @@ wk.add({
   { "<leader>g", group = "git" },
   { "<leader>gh", group = "hunks" },
   { "<leader>q", group = "quit/session" },
+  { "<leader>r", group = "refactor" },
   { "<leader>s", group = "search" },
   { "<leader>sn", group = "noice" },
   { "<leader>t", group = "test" },

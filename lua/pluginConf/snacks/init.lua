@@ -32,7 +32,7 @@ return {
       rename = { enabled = true },
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
-      terminal = { enabled = true },
+      terminal = { enabled = false },
       toggle = require("pluginConf.snacks.toggle"),
       util = { enabled = true },
       win = { enabled = true },

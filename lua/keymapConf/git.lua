@@ -47,20 +47,6 @@ if require("nixCatsUtils").enableForCategory("util") then
   local snacks = require("snacks")
   local snacks_keymap = require("lzextras").keymap("snacks.nvim")
 
-  -- LazyGit integration
-  snacks_keymap.set("n", "<leader>gg", function()
-    snacks.lazygit()
-  end, { desc = "LazyGit (Root Dir)" })
-  snacks_keymap.set("n", "<leader>gG", function()
-    snacks.lazygit({ cwd = vim.fn.expand("%:p:h") })
-  end, { desc = "LazyGit (cwd)" })
-  snacks_keymap.set("n", "<leader>gf", function()
-    snacks.lazygit.log_file()
-  end, { desc = "LazyGit Current File History" })
-  snacks_keymap.set("n", "<leader>gl", function()
-    snacks.lazygit.log()
-  end, { desc = "LazyGit Log" })
-
   -- Git browse
   snacks_keymap.set({ "n", "x" }, "<leader>gB", function()
     snacks.gitbrowse()

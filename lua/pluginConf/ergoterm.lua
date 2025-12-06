@@ -33,11 +33,49 @@ local function setup_claude()
   end, opts)
 end
 
+local function setup_lazygit()
+  local ergoterm = require("ergoterm")
+  local lazyterm = ergoterm.with_defaults({
+    cmd = "lazygit",
+    name = "lazygit",
+    layout = "float",
+    sticky = true,
+    auto_list = false,
+    bang_target = false,
+  })
+  local lazygit = lazyterm:new()
+
+  vim.keymap.set("n", "<leader>gg", function()
+    lazygit:toggle()
+  end, { noremap = true, silent = true, desc = "LazyGit" })
+  vim.keymap.set("n", "<leader>gf", function()
+    lazyterm
+      :new({
+        name = "lazylog",
+        cmd = "lazygit log -f " .. vim.fn.expand("%"),
+        sticky = false,
+      })
+      :focus()
+  end, { desc = "LazyGit Current File History" })
+  vim.keymap.set("n", "<leader>gl", function()
+    lazyterm
+      :new({
+        name = "lazylog",
+        cmd = "lazygit log",
+        sticky = false,
+      })
+      :focus()
+  end, { desc = "LazyGit log" })
+end
+
 local function setup_tasks()
   local ergoterm = require("ergoterm")
 
-  local float = ergoterm.with_defaults({
-    layout = "float",
+  local task = ergoterm.with_defaults({
+    layout = "below",
+    size = {
+      below = "30%",
+    },
     tags = { "task" },
     auto_list = false,
     bang_target = false,
@@ -48,45 +86,33 @@ local function setup_tasks()
     end,
   })
 
-  local below = ergoterm.with_defaults({
-    layout = "float",
-    tags = { "task" },
-    auto_list = false,
-    bang_target = false,
-    sticky = true,
-    auto_scroll = true,
-    default_action = function(term)
-      term:open()
-    end,
-  })
-
-  below:new({
+  task:new({
     name = "dev up",
-    command = "dev up",
+    cmd = "dev up",
   })
-  float:new({
+  task:new({
     name = "gt sync",
-    command = "gt sync",
+    cmd = "gt sync",
   })
-  float:new({
+  task:new({
     name = "gt modify",
-    command = "gt modify -a",
+    cmd = "gt modify -a",
   })
-  float:new({
+  task:new({
     name = "gt submit --stack",
-    command = "gt ss",
+    cmd = "gt ss",
   })
-  float:new({
+  task:new({
     name = "gt up",
-    command = "gt up",
+    cmd = "gt up",
   })
-  float:new({
+  task:new({
     name = "gt down",
-    command = "gt down",
+    cmd = "gt down",
   })
-  below:new({
+  task:new({
     name = "gt split",
-    command = "gt split",
+    cmd = "gt split",
   })
   local task_list = ergoterm.filter_by_tag("task")
 
@@ -107,6 +133,7 @@ return {
   lazy = false,
   after = function(plugin)
     setup_claude()
+    setup_lazygit()
     setup_tasks()
     require("ergoterm").setup({})
   end,
