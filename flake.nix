@@ -27,6 +27,10 @@
       # url = "git+file:///Users/willett/src/github.com/dwillett/neotest-ruby-minitest";
       flake = false;
     };
+    plugins-ergoterm-nvim = {
+      url = "github:waiting-for-dev/ergoterm.nvim";
+      flake = false;
+    };
   };
 
   outputs = {
