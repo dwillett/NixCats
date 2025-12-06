@@ -33,6 +33,71 @@ local function setup_claude()
   end, opts)
 end
 
+local function setup_tasks()
+  local ergoterm = require("ergoterm")
+
+  local float = ergoterm.with_defaults({
+    layout = "float",
+    tags = { "task" },
+    auto_list = false,
+    bang_target = false,
+    sticky = true,
+    auto_scroll = true,
+    default_action = function(term)
+      term:open()
+    end,
+  })
+
+  local below = ergoterm.with_defaults({
+    layout = "float",
+    tags = { "task" },
+    auto_list = false,
+    bang_target = false,
+    sticky = true,
+    auto_scroll = true,
+    default_action = function(term)
+      term:open()
+    end,
+  })
+
+  below:new({
+    name = "dev up",
+    command = "dev up",
+  })
+  float:new({
+    name = "gt sync",
+    command = "gt sync",
+  })
+  float:new({
+    name = "gt modify",
+    command = "gt modify -a",
+  })
+  float:new({
+    name = "gt submit --stack",
+    command = "gt ss",
+  })
+  float:new({
+    name = "gt up",
+    command = "gt up",
+  })
+  float:new({
+    name = "gt down",
+    command = "gt down",
+  })
+  below:new({
+    name = "gt split",
+    command = "gt split",
+  })
+  local task_list = ergoterm.filter_by_tag("task")
+
+  vim.keymap.set("n", "<leader>k", function()
+    ergoterm.select({
+      terminals = task_list,
+      prompt = "Run task",
+    })
+  end, { noremap = true, silent = true, desc = "Run task" })
+end
+
 return {
   "ergoterm-nvim",
   for_cat = {
@@ -42,6 +107,7 @@ return {
   lazy = false,
   after = function(plugin)
     setup_claude()
-    require("ergoterm").setup()
+    setup_tasks()
+    require("ergoterm").setup({})
   end,
 }
