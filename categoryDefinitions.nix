@@ -133,7 +133,10 @@
       melange-nvim
       nightfox-nvim
       onedark-nvim
-      lualine-nvim
+      {
+        name = "lualine.nvim";
+        plugin = pkgs.neovimPlugins.lualine-nvim;
+      }
       tabby-nvim
       aerial-nvim
       lspkind-nvim

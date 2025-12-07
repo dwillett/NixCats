@@ -31,6 +31,10 @@
       url = "github:waiting-for-dev/ergoterm.nvim";
       flake = false;
     };
+    plugins-lualine-nvim = {
+      url = "github:dwillett/lualine.nvim/git-branch-reftable-support";
+      flake = false;
+    };
   };
 
   outputs = {

@@ -112,7 +112,16 @@ return {
           "mode",
         },
         lualine_b = {
-          "branch",
+          {
+            "branch",
+            fmt = function(str)
+              if #str > 30 then
+                return str:sub(1, 30) .. "…"
+              else
+                return str
+              end
+            end,
+          },
           "diff",
           "filename",
         },

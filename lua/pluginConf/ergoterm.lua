@@ -152,6 +152,7 @@ return {
         layout = "below",
         size = {
           below = "30%",
+          right = "36%",
         },
       },
     })
