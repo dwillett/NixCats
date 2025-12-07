@@ -23,19 +23,12 @@ return {
     load = function(name)
       require("lzextras").loaders.multi({
         name,
-        "nvim-dap-ui",
+        "nvim-dap-view",
         "nvim-dap-virtual-text",
       })
     end,
     after = function(_)
       local dap = require("dap")
-      local dapui = require("dapui")
-
-      -- dap.listeners.after.event_initialized["dapui_config"] = dapui.open
-      -- dap.listeners.before.event_terminated["dapui_config"] = dapui.close
-      -- dap.listeners.before.event_exited["dapui_config"] = dapui.close
-
-      dapui.setup({})
 
       require("nvim-dap-virtual-text").setup({
         enabled = true,
@@ -88,7 +81,6 @@ return {
       default = true,
     },
     dep_of = {
-      "nvim-dap-ui",
       "neotest",
     },
   },

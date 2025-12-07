@@ -7,7 +7,6 @@ local map = vim.keymap.set
 if require("nixCatsUtils").enableForCategory("debug") then
   -- DAP keymaps following LazyVim conventions
   local dap_keymap = require("lzextras").keymap("nvim-dap")
-  local neotest_keymap = require("lzextras").keymap("neotest")
 
   -- Basic DAP controls
   dap_keymap.set("n", "<leader>db", function()
@@ -70,24 +69,14 @@ if require("nixCatsUtils").enableForCategory("debug") then
     require("dap").terminate()
   end, { desc = "Terminate" })
 
-  dap_keymap.set("n", "<leader>dw", function()
-    require("dap.ui.widgets").hover()
-  end, { desc = "Widgets" })
+  -- nvim-dap-view mappings
+  dap_keymap.set("n", "<leader>du", function()
+    require("dap-view").toggle({})
+  end, { desc = "Dap View" })
 
-  -- DAP UI specific keymaps
-  if require("nixCatsUtils").enableForCategory("debug") then
-    dap_keymap.set("n", "<leader>du", function()
-      require("dapui").toggle({})
-    end, { desc = "Dap UI" })
-
-    dap_keymap.set("n", "<leader>de", function()
-      require("dapui").eval()
-    end, { desc = "Eval" })
-
-    dap_keymap.set("v", "<leader>de", function()
-      require("dapui").eval()
-    end, { desc = "Eval" })
-  end
+  dap_keymap.set({ "n", "v" }, "<leader>dw", function()
+    require("dap-view").add_expr()
+  end, { desc = "Add to watch" })
 
   -- Function key mappings (following your existing conventions)
   dap_keymap.set("n", "<F5>", function()
@@ -123,43 +112,4 @@ if require("nixCatsUtils").enableForCategory("debug") then
       :e /tmp/nvim-profile.log
     ]])
   end, { desc = "Profile End" })
-
-  -- Test operations
-  neotest_keymap.set("n", "<leader>tc", function()
-    require("neotest").run.run()
-    require("neotest").output.open({ enter = false }) -- Auto-open output
-  end, { desc = "Run Nearest" })
-
-  neotest_keymap.set("n", "<leader>tC", function()
-    vim.cmd("noautocmd write")
-    require("neotest").run.run({ strategy = "dap" }) -- Auto-open output
-  end, { desc = "Debug Nearest" })
-
-  neotest_keymap.set("n", "<leader>tf", function()
-    require("neotest").run.run(vim.fn.expand("%"))
-  end, { desc = "Run File" })
-
-  neotest_keymap.set("n", "<leader>tT", function()
-    require("neotest").run.run(vim.uv.cwd())
-  end, { desc = "Run All Test Files" })
-
-  neotest_keymap.set("n", "<leader>ts", function()
-    require("neotest").summary.toggle()
-  end, { desc = "Toggle Summary" })
-
-  neotest_keymap.set("n", "<leader>to", function()
-    require("neotest").output.open({ enter = true, auto_close = true })
-  end, { desc = "Show Output" })
-
-  neotest_keymap.set("n", "<leader>tO", function()
-    require("neotest").output_panel.toggle()
-  end, { desc = "Toggle Output Panel" })
-
-  neotest_keymap.set("n", "<leader>tS", function()
-    require("neotest").run.stop()
-  end, { desc = "Stop" })
-
-  neotest_keymap.set("n", "<leader>tw", function()
-    require("neotest").watch.toggle(vim.fn.expand("%"))
-  end, { desc = "Toggle Watch" })
 end

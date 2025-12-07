@@ -58,6 +58,12 @@ local function setup_lazygit()
     sticky = true,
     auto_list = false,
     bang_target = false,
+    on_open = function(term)
+      -- Remap q to hide instead of quit (lazygit startup can be slow in large repos)
+      vim.keymap.set("t", "q", function()
+        term:close()
+      end, { buffer = term:get_state("bufnr"), desc = "Hide lazygit" })
+    end,
   })
   local lazygit = lazyterm:new()
 
@@ -84,6 +90,17 @@ local function setup_lazygit()
   end, { desc = "LazyGit log" })
 end
 
+local function load_tasks_from_file(filepath)
+  local f = loadfile(filepath)
+  if f then
+    local ok, tasks = pcall(f)
+    if ok and type(tasks) == "table" then
+      return tasks
+    end
+  end
+  return {}
+end
+
 local function setup_tasks()
   local ergoterm = require("ergoterm")
 
@@ -98,37 +115,22 @@ local function setup_tasks()
     end,
   })
 
-  task:new({
-    name = "dev up",
-    on_start = function(term)
-      term:send({ "dev up" })
-    end,
-    show_on_success = true,
-  })
-  task:new({
-    name = "gt sync",
-    cmd = "gt sync",
-  })
-  task:new({
-    name = "gt modify",
-    cmd = "gt modify -a",
-  })
-  task:new({
-    name = "gt submit --stack",
-    cmd = "gt ss",
-  })
-  task:new({
-    name = "gt up",
-    cmd = "gt up",
-  })
-  task:new({
-    name = "gt down",
-    cmd = "gt down",
-  })
-  task:new({
-    name = "gt split",
-    cmd = "gt split",
-  })
+  -- Load user-wide tasks from XDG config
+  local user_tasks_path = vim.fn.stdpath("config") .. "/tasks.lua"
+  local user_tasks = load_tasks_from_file(user_tasks_path)
+  for _, t in ipairs(user_tasks) do
+    t.tags = t.tags or { "task" }
+    task:new(t)
+  end
+
+  -- Load project-local tasks (overrides/adds to user tasks)
+  local project_tasks_path = vim.fn.getcwd() .. "/.nvim/tasks.lua"
+  local project_tasks = load_tasks_from_file(project_tasks_path)
+  for _, t in ipairs(project_tasks) do
+    t.tags = t.tags or { "task" }
+    task:new(t)
+  end
+
   local task_list = ergoterm.filter_by_tag("task")
 
   vim.keymap.set("n", "<leader>k", function()
@@ -151,7 +153,7 @@ return {
       terminal_defaults = {
         layout = "below",
         size = {
-          below = "30%",
+          below = "20%",
           right = "36%",
         },
       },

@@ -89,7 +89,7 @@
       nvim-nio
       nvim-dap
       pkgs.neovimPlugins.nvim-dap-ruby
-      nvim-dap-ui
+      nvim-dap-view
       nvim-dap-virtual-text
     ];
     editor = [

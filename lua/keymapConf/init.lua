@@ -8,12 +8,13 @@ require("keymapConf.general")
 require("keymapConf.lsp") -- LSP keymaps (replaces diagnostics + symbols)
 require("keymapConf.git") -- Git operations
 require("keymapConf.search") -- Search and find (replaces picker)
-require("keymapConf.noice") -- Search and find (replaces picker)
+require("keymapConf.noice") -- Noice
 require("keymapConf.ui") -- UI toggles and tools
 require("keymapConf.buffers") -- Buffer management (extracted from navigation)
 require("keymapConf.debug") -- Debug keymaps (if DAP enabled)
 require("keymapConf.tabby") -- Tabby
 require("keymapConf.terminal") -- Terminal
+require("keymapConf.testing") -- Testing
 
 -- Load which-key group names following LazyVim conventions
 local wk = require("which-key")

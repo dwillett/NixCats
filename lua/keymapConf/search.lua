@@ -125,18 +125,18 @@ if require("nixCatsUtils").enableForCategory("util") then
   end, { desc = "Undo History" })
 
   -- Word search (similar to grep for word under cursor)
-  snacks_keymap.set({ "n", "x" }, "<leader>sw", function()
+  snacks_keymap.set("n", "<leader>sw", function()
     snacks.picker.grep_word()
   end, { desc = "Word (Root Dir)" })
-  snacks_keymap.set({ "n", "x" }, "<leader>sW", function()
+  snacks_keymap.set("n", "<leader>sW", function()
     snacks.picker.grep_word({ cwd = vim.fn.expand("%:p:h") })
   end, { desc = "Word (cwd)" })
 
   -- Visual selection search
-  snacks_keymap.set("v", "<leader>sw", function()
+  snacks_keymap.set({ "x", "v" }, "<leader>sw", function()
     snacks.picker.grep_word({ mode = "v" })
   end, { desc = "Selection (Root Dir)" })
-  snacks_keymap.set("v", "<leader>sW", function()
+  snacks_keymap.set({ "x", "v" }, "<leader>sW", function()
     snacks.picker.grep_word({ mode = "v", cwd = vim.fn.expand("%:p:h") })
   end, { desc = "Selection (cwd)" })
 

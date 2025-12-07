@@ -10,11 +10,8 @@ if require("nixCatsUtils").enableForCategory("util") then
 
   map("n", "<leader>ol", ":TermSelect<CR>", { desc = "Select terminal", noremap = true, silent = true })
 
-  map("n", "<leader>os", ":TermSend! new_line=false<CR>", { desc = "Send text", noremap = true, silent = true })
-  map("x", "<leader>os", ":TermSend! new_line=false<CR>", { desc = "Send text", noremap = true, silent = true })
-
-  map("n", "<leader>ox", ":TermSend! action=open<CR>", { desc = "Send text", noremap = true, silent = true })
-  map("x", "<leader>ox", ":TermSend! action=open<CR>", { desc = "Send text", noremap = true, silent = true })
+  map({ "n", "x" }, "<leader>os", ":TermSend! new_line=false<CR>", { desc = "Send text", noremap = true, silent = true })
+  map({ "n", "x" }, "<leader>ox", ":TermSend! action=open<CR>", { desc = "Send text", noremap = true, silent = true })
 
   -- Terminal mappings
   map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })

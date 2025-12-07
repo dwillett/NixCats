@@ -69,11 +69,7 @@ end
 -- Refactoring keymaps (if nvim-treesitter-refactoring is available)
 if require("nixCatsUtils").enableForCategory("treesitter") then
   -- These would normally be in a refactoring.lua but keeping with LSP for now
-  map("n", "<leader>rf", function()
-    require("refactoring").refactor("Extract Function")
-  end, { desc = "Extract Function" })
-
-  map("v", "<leader>rf", function()
+  map({ "n", "v" }, "<leader>rf", function()
     require("refactoring").refactor("Extract Function")
   end, { desc = "Extract Function" })
 
