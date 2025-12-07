@@ -96,27 +96,6 @@ if not require("nixCatsUtils").isNixCats then
   map("n", "<leader>cp", "<cmd>PaqSync<cr>", { desc = "Paq Sync" })
 end
 
--- Terminal keymaps (moved from F2)
-if require("nixCatsUtils").enableForCategory("util") then
-  local snacks_keymap = require("lzextras").keymap("snacks.nvim")
-
-  snacks_keymap.set("n", "<leader>ft", function()
-    require("snacks").terminal()
-  end, { desc = "Terminal (Root Dir)" })
-
-  snacks_keymap.set("n", "<leader>fT", function()
-    require("snacks").terminal(nil, { cwd = vim.fn.expand("%:p:h") })
-  end, { desc = "Terminal (cwd)" })
-
-  snacks_keymap.set("n", "<c-/>", function()
-    require("snacks").terminal()
-  end, { desc = "Terminal (Root Dir)" })
-
-  snacks_keymap.set("n", "<c-_>", function()
-    require("snacks").terminal()
-  end, { desc = "which_key_ignore" })
-end
-
 -- Format toggle (global and buffer)
 map("n", "<leader>uf", function()
   vim.g.autoformat = not vim.g.autoformat

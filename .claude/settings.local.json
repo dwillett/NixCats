@@ -6,7 +6,8 @@
       "WebFetch(domain:www.lazyvim.org)",
       "WebFetch(domain:github.com)",
       "WebSearch",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(pbcopy:*)"
     ],
     "deny": [],
     "ask": []

@@ -13,6 +13,7 @@ require("keymapConf.ui") -- UI toggles and tools
 require("keymapConf.buffers") -- Buffer management (extracted from navigation)
 require("keymapConf.debug") -- Debug keymaps (if DAP enabled)
 require("keymapConf.tabby") -- Tabby
+require("keymapConf.terminal") -- Terminal
 
 -- Load which-key group names following LazyVim conventions
 local wk = require("which-key")
@@ -24,10 +25,10 @@ wk.add({
   { "<leader>f", group = "file/find" },
   { "<leader>g", group = "git" },
   { "<leader>gh", group = "hunks" },
-  { "<leader>q", group = "quit/session" },
+  { "<leader>o", group = "terminal" },
   { "<leader>r", group = "refactor" },
   { "<leader>s", group = "search" },
-  { "<leader>sn", group = "noice" },
+  { "<leader>n", group = "noice" },
   { "<leader>t", group = "test" },
   { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
   { "<leader>w", group = "windows" },

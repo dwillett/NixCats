@@ -53,9 +53,6 @@
   # Plugins that don't need lazy loading
   startupPlugins = with pkgs.vimPlugins; {
     # Main plugins to have
-    coding = [
-      pkgs.neovimPlugins.ergoterm-nvim
-    ];
     lsp = [
       pkgs.neovimPlugins.shadowenv-vim
     ];
@@ -66,6 +63,7 @@
       nvim-treesitter.withAllGrammars
     ];
     util = [
+      pkgs.neovimPlugins.ergoterm-nvim
       lze
       lzextras
       oil-nvim

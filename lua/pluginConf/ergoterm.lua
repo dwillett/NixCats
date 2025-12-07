@@ -1,3 +1,13 @@
+local function setup_default()
+  local ergoterm = require("ergoterm")
+
+  return ergoterm:new({
+    layout = "below",
+    name = "default",
+    sticky = true,
+  })
+end
+
 local function setup_claude()
   local ergoterm = require("ergoterm")
   local map = vim.keymap.set
@@ -31,6 +41,13 @@ local function setup_claude()
   map("v", "<leader>as", function()
     claude:send("visual_selection", { trim = false })
   end, opts)
+
+  map("n", "<C-a>", function()
+    claude:toggle()
+  end, { desc = "Toggle Claude" })
+  map("t", "<C-a>", function()
+    claude:toggle()
+  end, { desc = "Toggle Claude" })
 end
 
 local function setup_lazygit()
@@ -127,7 +144,7 @@ end
 return {
   "ergoterm-nvim",
   for_cat = {
-    cat = "coding",
+    cat = "util",
     default = true,
   },
   lazy = false,
@@ -136,5 +153,9 @@ return {
     setup_lazygit()
     setup_tasks()
     require("ergoterm").setup({})
+    local default = setup_default()
+    if default then
+      default:start()
+    end
   end,
 }

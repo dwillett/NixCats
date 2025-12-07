@@ -189,31 +189,6 @@ else
   end
 end
 
--- LazyVim terminal mappings (if using snacks)
-if snacks then
-  map("n", "<leader>ft", function()
-    snacks.terminal()
-  end, { desc = "Terminal (Root Dir)" })
-  map("n", "<leader>fT", function()
-    snacks.terminal(nil, { cwd = vim.fn.expand("%:p:h") })
-  end, { desc = "Terminal (cwd)" })
-  map("n", "<c-/>", function()
-    snacks.terminal()
-  end, { desc = "Terminal (Root Dir)" })
-  map("n", "<c-_>", function()
-    snacks.terminal()
-  end, { desc = "which_key_ignore" })
-
-  -- Terminal mappings
-  map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
-  map("t", "<C-Left>", "<cmd>wincmd h<cr>", { desc = "Go to Left Window" })
-  map("t", "<C-Down>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
-  map("t", "<C-Up>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
-  map("t", "<C-Right>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
-  map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-  map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
-end
-
 -- windows
 map("n", "<leader>w", "<c-w>", { desc = "Windows", remap = true })
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
