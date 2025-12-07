@@ -123,11 +123,11 @@
     "plugins-lualine-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1765093744,
-        "narHash": "sha256-kD61CqXbpBhJ2ypmnyUzKMtMVihPdzdp2WldKqZLUW0=",
+        "lastModified": 1765138116,
+        "narHash": "sha256-AI6ldn+Bt24MSqq9ANs5ueXdw6D/TmfrzMcT/aMNLeI=",
         "owner": "dwillett",
         "repo": "lualine.nvim",
-        "rev": "a217a2ec4f789d26cd43bf8b5af7136f83389965",
+        "rev": "0f8ec0cd53cb20fd2c1fb1e06c1dd5b8c6953c42",
         "type": "github"
       },
       "original": {
