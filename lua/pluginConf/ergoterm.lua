@@ -2,7 +2,6 @@ local function setup_default()
   local ergoterm = require("ergoterm")
 
   return ergoterm:new({
-    layout = "below",
     name = "default",
     sticky = true,
   })
@@ -89,10 +88,6 @@ local function setup_tasks()
   local ergoterm = require("ergoterm")
 
   local task = ergoterm.with_defaults({
-    layout = "below",
-    size = {
-      below = "30%",
-    },
     tags = { "task" },
     auto_list = false,
     bang_target = false,
@@ -105,7 +100,10 @@ local function setup_tasks()
 
   task:new({
     name = "dev up",
-    cmd = "dev up",
+    on_start = function(term)
+      term:send({ "dev up" })
+    end,
+    show_on_success = true,
   })
   task:new({
     name = "gt sync",
@@ -149,10 +147,17 @@ return {
   },
   lazy = false,
   after = function(plugin)
+    require("ergoterm").setup({
+      terminal_defaults = {
+        layout = "below",
+        size = {
+          below = "30%",
+        },
+      },
+    })
     setup_claude()
     setup_lazygit()
     setup_tasks()
-    require("ergoterm").setup({})
     local default = setup_default()
     if default then
       default:start()
