@@ -14,24 +14,22 @@ if require("nixCatsUtils").enableForCategory("util") then
   map({ "n", "x" }, "<leader>ox", ":TermSend! action=open<CR>", { desc = "Send text", noremap = true, silent = true })
 
   -- Terminal mappings
-  map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
+  map("t", "<C-Space>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
   map("t", "<C-Left>", "<cmd>wincmd h<cr>", { desc = "Go to Left Window" })
   map("t", "<C-Down>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
   map("t", "<C-Up>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
   map("t", "<C-Right>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
-  local function focus_terminal()
-    local target = ergoterm.get_target_for_bang()
-    if target then
-      target:focus()
-    else
-      local default_term = ergoterm.get_by_name("default")
-      if default_term then
-        default_term:focus()
-      end
-    end
+  -- Resize in terminal mode (matches normal mode C-h/j/k/l)
+  map("t", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+  map("t", "<C-j>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+  map("t", "<C-k>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+  map("t", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+  local function toggle_bottom_terminal()
+    -- With pinned views, edgy.toggle() will call the open function when expanding
+    require("edgy").toggle("bottom")
   end
-  map("n", "<C-/>", focus_terminal, { desc = "Focus terminal", noremap = true, silent = true })
-  map("n", "<C-_>", focus_terminal, { desc = "which_key_ignore" })
-  map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-  map("t", "<C-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+  map("n", "<C-/>", toggle_bottom_terminal, { desc = "Toggle bottom terminal", noremap = true, silent = true })
+  map("n", "<C-_>", toggle_bottom_terminal, { desc = "which_key_ignore" })
+  map("t", "<C-/>", toggle_bottom_terminal, { desc = "Toggle bottom terminal" })
+  map("t", "<C-_>", toggle_bottom_terminal, { desc = "which_key_ignore" })
 end

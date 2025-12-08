@@ -14,6 +14,7 @@ require("lze").load({
   { import = "pluginConf.completion" },
   { import = "pluginConf.conform" },
   { import = "pluginConf.dap" },
+  { import = "pluginConf.edgy" },
   { import = "pluginConf.ergoterm" },
   { import = "pluginConf.flash" },
   { import = "pluginConf.git" },

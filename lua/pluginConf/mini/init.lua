@@ -99,8 +99,6 @@ return {
     --]]
     -- Jump to character
     require("mini.jump").setup()
-    -- Highlight word under cursor
-    require("mini.cursorword").setup()
     -- Highlight certain stuff
     local minihp = require("mini.hipatterns")
     minihp.setup({

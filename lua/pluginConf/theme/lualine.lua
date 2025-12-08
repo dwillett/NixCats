@@ -127,6 +127,14 @@ return {
         },
         lualine_c = {
           {
+            "aerial",
+            sep = " › ",
+            depth = 3,
+            dense = false,
+            dense_sep = ".",
+            colored = true,
+          },
+          {
             diagnostics_message,
             colors = {
               error = "#BF616A",

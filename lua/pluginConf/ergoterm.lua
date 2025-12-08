@@ -152,10 +152,15 @@ return {
     require("ergoterm").setup({
       terminal_defaults = {
         layout = "below",
-        size = {
-          below = "20%",
-          right = "36%",
-        },
+        on_open = function(term)
+          -- Prevent other plugins (like nvim-dap) from hijacking terminal windows
+          -- to display files. winfixbuf tells Neovim this window should only show
+          -- its current buffer.
+          local winid = term:get_state("window")
+          if winid and vim.api.nvim_win_is_valid(winid) then
+            vim.api.nvim_set_option_value("winfixbuf", true, { win = winid })
+          end
+        end,
       },
     })
     setup_claude()

@@ -99,6 +99,7 @@
       which-key-nvim
       gitsigns-nvim
       trouble-nvim
+      edgy-nvim
     ];
     formatting = [
       conform-nvim
