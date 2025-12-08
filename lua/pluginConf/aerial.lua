@@ -36,7 +36,6 @@ return {
         default_direction = "prefer_left",
         win_opts = {
           winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
-          winfixbuf = true,
           signcolumn = "yes",
           statuscolumn = " ",
         },
