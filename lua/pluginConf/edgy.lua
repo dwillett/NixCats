@@ -4,9 +4,10 @@
 return {
   "edgy.nvim",
   for_cat = {
-    cat = "editor",
+    cat = "util",
     default = true,
   },
+  on_require = { "edgy" },
   event = { "DeferredUIEnter" },
   after = function(_)
     require("edgy").setup({
@@ -14,6 +15,10 @@ return {
       bottom = {
         {
           ft = "dap-view",
+          size = { height = 0.3 },
+        },
+        {
+          ft = "dap-repl",
           size = { height = 0.3 },
         },
         {
@@ -38,7 +43,11 @@ return {
           ft = "ergoterm",
           title = "Terminal",
           size = { height = 0.3 },
-          filter = function(buf)
+          filter = function(buf, win)
+            -- Skip floating windows (lazygit, etc.)
+            if vim.api.nvim_win_get_config(win).relative ~= "" then
+              return false
+            end
             local bufname = vim.api.nvim_buf_get_name(buf)
             -- Claude terminal goes to the right, everything else goes bottom
             return not bufname:match("claude")
@@ -89,7 +98,11 @@ return {
           ft = "ergoterm",
           title = "Claude",
           size = { width = 0.36 },
-          filter = function(buf)
+          filter = function(buf, win)
+            -- Skip floating windows (lazygit, etc.)
+            if vim.api.nvim_win_get_config(win).relative ~= "" then
+              return false
+            end
             local bufname = vim.api.nvim_buf_get_name(buf)
             return bufname:match("claude")
           end,
@@ -130,6 +143,8 @@ return {
         right = { size = 30 },
         top = { size = 10 },
       },
+
+      close_when_all_hidden = false,
     })
 
     -- Clear edgy highlight groups to inherit transparency from Normal

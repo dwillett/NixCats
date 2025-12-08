@@ -2,6 +2,7 @@ local map = vim.keymap.set
 
 if require("nixCatsUtils").enableForCategory("util") then
   local ergoterm = require("ergoterm")
+  local edgy = require("edgy")
 
   map("n", "<leader>on", ":TermNew layout=below<CR>", { desc = "New terminal (below)", noremap = true, silent = true })
   map("n", "<leader>ov", ":TermNew layout=right<CR>", { desc = "New terminal (right)", noremap = true, silent = true })
@@ -10,7 +11,12 @@ if require("nixCatsUtils").enableForCategory("util") then
 
   map("n", "<leader>ol", ":TermSelect<CR>", { desc = "Select terminal", noremap = true, silent = true })
 
-  map({ "n", "x" }, "<leader>os", ":TermSend! new_line=false<CR>", { desc = "Send text", noremap = true, silent = true })
+  map(
+    { "n", "x" },
+    "<leader>os",
+    ":TermSend! new_line=false<CR>",
+    { desc = "Send text", noremap = true, silent = true }
+  )
   map({ "n", "x" }, "<leader>ox", ":TermSend! action=open<CR>", { desc = "Send text", noremap = true, silent = true })
 
   -- Terminal mappings
@@ -24,12 +30,19 @@ if require("nixCatsUtils").enableForCategory("util") then
   map("t", "<C-j>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
   map("t", "<C-k>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
   map("t", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
-  local function toggle_bottom_terminal()
-    -- With pinned views, edgy.toggle() will call the open function when expanding
-    require("edgy").toggle("bottom")
+
+  map("t", "<C-q>", function()
+    edgy.get_win():hide()
+  end, { desc = "Collapse window", noremap = true, silent = true })
+
+  local function focus_terminal()
+    local term = ergoterm.get_target_for_bang() or ergoterm.get_by_name("default")
+    if term and not term:is_focused() then
+      term:focus()
+    else
+      edgy.goto_main()
+    end
   end
-  map("n", "<C-/>", toggle_bottom_terminal, { desc = "Toggle bottom terminal", noremap = true, silent = true })
-  map("n", "<C-_>", toggle_bottom_terminal, { desc = "which_key_ignore" })
-  map("t", "<C-/>", toggle_bottom_terminal, { desc = "Toggle bottom terminal" })
-  map("t", "<C-_>", toggle_bottom_terminal, { desc = "which_key_ignore" })
+  map({ "n", "t" }, "<C-/>", focus_terminal, { desc = "Focus terminal", noremap = true, silent = true })
+  map({ "n", "t" }, "<C-_>", focus_terminal, { desc = "which_key_ignore", noremap = true, silent = true })
 end

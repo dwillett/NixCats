@@ -99,7 +99,6 @@
       which-key-nvim
       gitsigns-nvim
       trouble-nvim
-      edgy-nvim
     ];
     formatting = [
       conform-nvim
@@ -144,6 +143,7 @@
       tint-nvim
     ];
     util = [
+      edgy-nvim
       plenary-nvim
       urlview-nvim
       pomo-nvim
