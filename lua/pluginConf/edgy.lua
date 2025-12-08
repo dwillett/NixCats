@@ -74,6 +74,7 @@ return {
           ft = "aerial",
           title = "Symbols",
           size = { width = 0.18 },
+          pinned = true,
         },
         {
           ft = "trouble",
