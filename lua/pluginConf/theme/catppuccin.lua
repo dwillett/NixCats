@@ -55,7 +55,14 @@ return { -- Catppuccin theme
     opt.flavour = _style
     opt.transparent_background = _trans
 
-    -- DAP integration
+    -- DAP integration - signs and highlights
+    -- Using catppuccin mocha palette colors
+    vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#f38ba8" }) -- red
+    vim.api.nvim_set_hl(0, "DapBreakpointCondition", { fg = "#fab387" }) -- peach
+    vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#89dceb" }) -- sky
+    vim.api.nvim_set_hl(0, "DapStopped", { fg = "#a6e3a1" }) -- green (bright arrow)
+    vim.api.nvim_set_hl(0, "DapStoppedLine", { bg = "#45475a" }) -- surface1 (subtle line highlight)
+
     vim.fn.sign_define("DapBreakpoint", {
       text = "●",
       texthl = "DapBreakpoint",
@@ -73,6 +80,12 @@ return { -- Catppuccin theme
       texthl = "DapLogPoint",
       linehl = "",
       numhl = "",
+    })
+    vim.fn.sign_define("DapStopped", {
+      text = "→",
+      texthl = "DapStopped",
+      linehl = "DapStoppedLine",
+      numhl = "DapStopped",
     })
 
     -- Disable kitty detection, I rather have the transparent background
