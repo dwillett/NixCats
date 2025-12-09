@@ -101,6 +101,125 @@ local function load_tasks_from_file(filepath)
   return {}
 end
 
+--- Group tasks by their `group` field
+--- Tasks without a group are placed in "other"
+---@param tasks table[] Array of terminal instances
+---@return table<string, table[]> Map of group name to array of terminals
+local function group_tasks_by_cli(tasks)
+  local groups = {}
+  for _, term in ipairs(tasks) do
+    -- Get the group from term.meta.group (meta is stored directly on terminal, not in state)
+    local meta = term.meta or {}
+    local group_name = meta.group or "other"
+    if not groups[group_name] then
+      groups[group_name] = {}
+    end
+    table.insert(groups[group_name], term)
+  end
+  return groups
+end
+
+--- Get sorted group names (alphabetically, but "other" always last)
+---@param groups table<string, table[]>
+---@return string[]
+local function get_sorted_group_names(groups)
+  local names = {}
+  for name, _ in pairs(groups) do
+    if name ~= "other" then
+      table.insert(names, name)
+    end
+  end
+  table.sort(names)
+  -- Add "other" at the end if it exists
+  if groups["other"] then
+    table.insert(names, "other")
+  end
+  return names
+end
+
+--- Show a picker to select a task group, then show tasks in that group
+---@param ergoterm table The ergoterm module
+---@param task_list table[] Array of terminal instances
+local function select_task_by_group(ergoterm, task_list)
+  local groups = group_tasks_by_cli(task_list)
+  local group_names = get_sorted_group_names(groups)
+
+  -- If only one group (or no groups), skip group selection
+  if #group_names <= 1 then
+    ergoterm.select({
+      terminals = task_list,
+      prompt = "Run task",
+    })
+    return
+  end
+
+  local show_group_picker, show_tasks_for_group
+
+  function show_tasks_for_group(group_name)
+    local tasks = groups[group_name]
+    local task_names = {}
+    for _, term in ipairs(tasks) do
+      table.insert(task_names, term.name or "unnamed")
+    end
+    table.insert(task_names, "← Back")
+
+    vim.ui.select(task_names, {
+      prompt = "Run " .. group_name .. " task:",
+    }, function(choice)
+      if choice == "← Back" then
+        show_group_picker()
+      elseif choice then
+        -- Find and run the selected task
+        for _, term in ipairs(tasks) do
+          if (term.name or "unnamed") == choice then
+            term:default_action()
+            break
+          end
+        end
+      end
+    end)
+  end
+
+  function show_group_picker()
+    -- Use vim.ui.select for consistent styling with ergoterm's task selector
+    vim.ui.select(group_names, {
+      prompt = "Select task group:",
+      format_item = function(name)
+        local tasks = groups[name]
+        local task_names = {}
+        local max_preview = 2
+        for i, term in ipairs(tasks) do
+          if i > max_preview then
+            break
+          end
+          table.insert(task_names, term.name or "unnamed")
+        end
+        local preview = table.concat(task_names, ", ")
+        if #tasks > max_preview then
+          preview = preview .. " and " .. (#tasks - max_preview) .. " more"
+        end
+        return string.format("%s (%s)", name, preview)
+      end,
+    }, function(choice)
+      if choice then
+        show_tasks_for_group(choice)
+      end
+    end)
+  end
+
+  show_group_picker()
+end
+
+--- Show all tasks in a single flat picker (for quick access)
+---@param ergoterm table The ergoterm module
+---@param task_list table[] Array of terminal instances
+local function select_all_tasks(ergoterm, task_list)
+  ergoterm.select({
+    terminals = task_list,
+    prompt = "Run task",
+  })
+end
+
 local function setup_tasks()
   local ergoterm = require("ergoterm")
 
@@ -120,6 +239,9 @@ local function setup_tasks()
   local user_tasks = load_tasks_from_file(user_tasks_path)
   for _, t in ipairs(user_tasks) do
     t.tags = t.tags or { "task" }
+    -- Store the group in meta for later retrieval
+    t.meta = t.meta or {}
+    t.meta.group = t.group
     task:new(t)
   end
 
@@ -128,17 +250,23 @@ local function setup_tasks()
   local project_tasks = load_tasks_from_file(project_tasks_path)
   for _, t in ipairs(project_tasks) do
     t.tags = t.tags or { "task" }
+    -- Store the group in meta for later retrieval
+    t.meta = t.meta or {}
+    t.meta.group = t.group
     task:new(t)
   end
 
   local task_list = ergoterm.filter_by_tag("task")
 
+  -- <leader>k - Two-stage picker: select group first, then task
   vim.keymap.set("n", "<leader>k", function()
-    ergoterm.select({
-      terminals = task_list,
-      prompt = "Run task",
-    })
-  end, { noremap = true, silent = true, desc = "Run task" })
+    select_task_by_group(ergoterm, task_list)
+  end, { noremap = true, silent = true, desc = "Run task (by group)" })
+
+  -- <leader>K - All tasks in a flat list (quick access, no grouping)
+  vim.keymap.set("n", "<leader>K", function()
+    select_all_tasks(ergoterm, task_list)
+  end, { noremap = true, silent = true, desc = "Run task (all)" })
 end
 
 return {
