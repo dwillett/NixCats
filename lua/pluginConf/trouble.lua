@@ -14,14 +14,6 @@ return {
   event = { "DeferredUIEnter" },
   after = function(plugin)
     require("trouble").setup({
-      icons = {
-        top = "║ ",
-        middle = "╟─",
-        last = "╙─",
-        fold_open = " ",
-        fold_closed = " ",
-        ws = "  ",
-      },
       picker = {
         actions = require("trouble.sources.snacks").actions,
         win = {
@@ -35,6 +27,12 @@ return {
           },
         },
       },
+    })
+
+    vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+      callback = function()
+        vim.cmd([[Trouble qflist open]])
+      end,
     })
   end,
 }

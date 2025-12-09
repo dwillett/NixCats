@@ -91,8 +91,26 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 -- location and quickfix lists
 map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
-map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
-map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+map("n", "Q", function()
+  if require("trouble").is_open() then
+    require("trouble").prev({ skip_groups = true, jump = true })
+  else
+    local ok, err = pcall(vim.cmd.cprev)
+    if not ok then
+      vim.notify(err, vim.log.levels.ERROR)
+    end
+  end
+end, { desc = "Previous Quickfix" })
+map("n", "q", function()
+  if require("trouble").is_open() then
+    require("trouble").next({ skip_groups = true, jump = true })
+  else
+    local ok, err = pcall(vim.cmd.cnext)
+    if not ok then
+      vim.notify(err, vim.log.levels.ERROR)
+    end
+  end
+end, { desc = "Next Quickfix" })
 
 -- formatting (using conform.nvim when available)
 map({ "n", "v" }, "<leader>cf", function()
