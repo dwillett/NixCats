@@ -24,6 +24,10 @@ if require("nixCatsUtils").enableForCategory("testing") then
     require("neotest").summary.toggle()
   end, { desc = "Toggle Summary" })
 
+  neotest_keymap.set({ "n", "x" }, "<C-s>t", function()
+    require("neotest").summary.toggle()
+  end, { desc = "Toggle Summary" })
+
   neotest_keymap.set("n", "<leader>to", function()
     require("neotest").output.open({ enter = true, auto_close = true })
   end, { desc = "Show Output" })

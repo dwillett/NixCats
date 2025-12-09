@@ -66,9 +66,14 @@ return {
           title = "Test Output",
           size = { height = 0.3 },
         },
+        {
+          ft = "DiffviewFileHistory",
+          title = "File History",
+          size = { height = 0.3 },
+        },
       },
 
-      -- Left: symbols, outline
+      -- Left: symbols, outline, neogit status, diffview
       left = {
         {
           ft = "aerial",
@@ -88,6 +93,16 @@ return {
         {
           ft = "neotest-summary",
           title = "Tests",
+          size = { width = 0.18 },
+        },
+        {
+          ft = "NeogitStatus",
+          title = "Git Status",
+          size = { width = 0.18 },
+        },
+        {
+          ft = "DiffviewFiles",
+          title = "Diff Files",
           size = { width = 0.18 },
         },
       },

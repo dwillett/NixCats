@@ -98,6 +98,8 @@
       grug-far-nvim
       which-key-nvim
       gitsigns-nvim
+      neogit
+      diffview-nvim
       trouble-nvim
     ];
     formatting = [
