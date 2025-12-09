@@ -97,8 +97,9 @@ return {
     lsp.create_client = function(config)
       return vim.lsp.start(config, {
         bufnr = config.bufnr,
-        reuse_client = function(_, _)
-          return false
+        reuse_client = function(client, lsp_config)
+          -- Reuse client if it matches the same project root
+          return client.name == lsp_config.name and client.config.root_dir == lsp_config.root_dir
         end,
       })
     end
