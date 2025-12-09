@@ -79,8 +79,19 @@ return {
         section = { ">", "v" },
       },
       sections = {
+        sequencer = {
+          hidden = true,
+        },
         stashes = {
-          folded = false,
+          folded = true,
+        },
+        unmerged_upstream = {
+          folded = true,
+          hidden = true,
+        },
+        unmerged_pushRemote = {
+          folded = true,
+          hidden = true,
         },
       },
     })
