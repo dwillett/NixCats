@@ -19,12 +19,8 @@ return {
     require("mini.comment").setup()
     -- Move selection or line
     require("mini.move").setup()
-    -- Evaluate, sort and exchange text regions
-    require("mini.operators").setup()
     -- Automatically insert paranthesis pairs
     require("mini.pairs").setup()
-    -- Split and join arguments to functions
-    require("mini.splitjoin").setup()
     -- Surround actions
     require("mini.surround").setup({
       mappings = {

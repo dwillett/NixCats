@@ -101,6 +101,7 @@
       neogit
       diffview-nvim
       trouble-nvim
+      treesj
     ];
     formatting = [
       conform-nvim

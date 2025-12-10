@@ -36,6 +36,7 @@ require("lze").load({
   { import = "pluginConf.tint" },
   { import = "pluginConf.theme" },
   { import = "pluginConf.treesitter" },
+  { import = "pluginConf.treesj" },
   { import = "pluginConf.trouble" },
   { import = "pluginConf.util" },
   { import = "pluginConf.whichKey" },
