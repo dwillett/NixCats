@@ -99,6 +99,7 @@
       which-key-nvim
       gitsigns-nvim
       neogit
+      pkgs.neovimPlugins.canopy-nvim
       diffview-nvim
       trouble-nvim
       treesj

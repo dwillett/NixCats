@@ -15,7 +15,7 @@
 
     # ----- External Plugins ----- #
     plugins-shadowenv-vim = {
-      url = "github:Shopify/shadowenv.vim";
+      url = "git+https://github.com/Shopify/shadowenv.vim";
       flake = false;
     };
     plugins-nvim-dap-ruby = {
@@ -33,6 +33,11 @@
     };
     plugins-lualine-nvim = {
       url = "github:dwillett/lualine.nvim/git-branch-reftable-support";
+      flake = false;
+    };
+    plugins-canopy-nvim = {
+      url = "git+https://github.com/shopify-playground/canopy.nvim";
+      # url = "git+file:///Users/willett/src/github.com/dwillett/canopy.nvim";
       flake = false;
     };
   };

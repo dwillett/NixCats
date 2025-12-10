@@ -11,6 +11,7 @@ require("pluginConf.paq")
 -- Plugin configs, with one call to lze
 require("lze").load({
   { import = "pluginConf.aerial" },
+  { import = "pluginConf.canopy" },
   { import = "pluginConf.completion" },
   { import = "pluginConf.conform" },
   { import = "pluginConf.dap" },

@@ -14,6 +14,10 @@ return {
       -- Bottom: diagnostics, quickfix, terminal, help
       bottom = {
         {
+          ft = "canopy-output",
+          size = { height = 0.3 },
+        },
+        {
           ft = "dap-view",
           size = { height = 0.3 },
         },
@@ -93,6 +97,14 @@ return {
         {
           ft = "neotest-summary",
           title = "Tests",
+          size = { width = 0.18 },
+        },
+        {
+          ft = "canopy-stack",
+          size = { width = 0.18 },
+        },
+        {
+          ft = "canopy-stage",
           size = { width = 0.18 },
         },
         {
