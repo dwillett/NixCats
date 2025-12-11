@@ -107,11 +107,11 @@
     "plugins-canopy-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1765476408,
-        "narHash": "sha256-0CuPiPM+GfGRXYOPdGxstpz8Ae3GpTkB7zVDl8OeAJ4=",
+        "lastModified": 1765479855,
+        "narHash": "sha256-0sCkvsCEZbgvr+RatI+49zuqhTVU3P711iS1dkQJVpI=",
         "ref": "refs/heads/main",
-        "rev": "e3d471ce270f9e8d86003861176b8927b36af3d7",
-        "revCount": 20,
+        "rev": "fc99f66391b6ca5cedba795ab1387ffeadfc9e7c",
+        "revCount": 21,
         "type": "git",
         "url": "https://github.com/shopify-playground/canopy.nvim"
       },
