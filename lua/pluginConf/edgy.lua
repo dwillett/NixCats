@@ -101,10 +101,17 @@ return {
         },
         {
           ft = "canopy-stack",
+          title = "Stacks",
           size = { width = 0.18 },
         },
         {
           ft = "canopy-stage",
+          title = "Stage",
+          size = { width = 0.18 },
+        },
+        {
+          ft = "canopy-stash",
+          title = "Stash",
           size = { width = 0.18 },
         },
         {

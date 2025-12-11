@@ -15,13 +15,11 @@ return {
     after = function(plugin)
       require("canopy").setup({
         git = {
-          stage = { position = "left", size = 40 },
+          stage = { position = "left" },
+          stash = { position = "left" },
         },
         graphite = {
-          stack = { position = "left", size = 40 },
-        },
-        keymaps = {
-          global = { open = "<leader>gt" },
+          stack = { position = "left" },
         },
       })
     end,
