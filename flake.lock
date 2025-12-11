@@ -28,11 +28,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1765325056,
-        "narHash": "sha256-CyJhdoAyToF6Uv3oGicXloHoQjcq7b56i42AepBSEJ0=",
+        "lastModified": 1765411465,
+        "narHash": "sha256-rwrGoscS1AXRsiB100JduKO9ySKEjC8zsSBIDfKi1G8=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "ac9bde3d5fcec88383a16a63dc1bdb1702f7233e",
+        "rev": "d47f5957732f763696803b564eb9c608a486014e",
         "type": "github"
       },
       "original": {
@@ -44,11 +44,11 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1765306746,
-        "narHash": "sha256-xOCKI2adwCfZmhnKoA+tUIOXRu+g5S02erNVP7X47J0=",
+        "lastModified": 1765391613,
+        "narHash": "sha256-6tqSpj8b33kSY/0rYEdQRHsICdkZD/AtXSoC0EH/hFY=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "bc0635a9fc9c15a2423d4eb35f627d127d00fa46",
+        "rev": "78bbe53f7615e8b38d5289d9ce0579996109579b",
         "type": "github"
       },
       "original": {
@@ -107,11 +107,11 @@
     "plugins-canopy-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1765408532,
-        "narHash": "sha256-D9CzKzV9e+nHDdrKDcKFvc/0j6vRjjPEHjUMGQSqK7c=",
+        "lastModified": 1765427209,
+        "narHash": "sha256-/JkpKCzp8vPTEvsBml+/NWsqZzUUy85m6t3OS1tNdMs=",
         "ref": "refs/heads/main",
-        "rev": "b77ea92302b9b6ae330568fdcda1c6192434b1d2",
-        "revCount": 14,
+        "rev": "5c096d8953315dd4cebb3a0096397984e0e951bf",
+        "revCount": 16,
         "type": "git",
         "url": "https://github.com/shopify-playground/canopy.nvim"
       },

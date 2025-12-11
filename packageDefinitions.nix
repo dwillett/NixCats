@@ -83,14 +83,14 @@
     categories = {
       coding = false;
       debug = false;
-      editor = true;
-      formatting = true;
+      editor = false;
+      formatting = false;
       lsp = false;
       markdown = false;
       testing = false;
-      treesitter = true;
+      treesitter = false;
       ui = false;
-      util = true;
+      util = false;
     };
     extra = {
       # Just a marker to make sure some behavior is disabled
