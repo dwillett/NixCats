@@ -109,8 +109,10 @@
       nvim-lint
     ];
     lsp = [
-      nvim-lspconfig
+      copilot-lsp
+      copilot-lua
       lazydev-nvim
+      nvim-lspconfig
     ];
     markdown = [
       mkdnflow-nvim

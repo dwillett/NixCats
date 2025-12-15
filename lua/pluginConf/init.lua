@@ -14,6 +14,7 @@ require("lze").load({
   { import = "pluginConf.canopy" },
   { import = "pluginConf.completion" },
   { import = "pluginConf.conform" },
+  { import = "pluginConf.copilot" },
   { import = "pluginConf.dap" },
   { import = "pluginConf.diffview" },
   { import = "pluginConf.edgy" },
