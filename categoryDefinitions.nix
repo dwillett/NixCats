@@ -17,6 +17,7 @@
     formatting = [
       alejandra
       stylua
+      selene
       nix-doc
       dotenv-linter
     ];
@@ -80,6 +81,7 @@
   optionalPlugins = with pkgs.vimPlugins; {
     coding = [
       blink-cmp
+      blink-copilot
       blink-ripgrep-nvim
       blink-emoji-nvim
       luasnip
@@ -203,6 +205,12 @@
       (lua-pkgs:
         with lua-pkgs; [
           jsregexp
+        ])
+    ];
+    formatting = [
+      (lua-pkgs:
+        with lua-pkgs; [
+          luacheck
         ])
     ];
   };

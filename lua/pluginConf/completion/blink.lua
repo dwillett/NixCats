@@ -1,34 +1,18 @@
--- <nixCats>/lua/pluginConf/completion/blink.lua
--- Blink autocompletion configuration
-
 return {
-  -- Completion engines
-  {
-    "blink-ripgrep.nvim",
-    for_cat = { cat = "coding", default = true },
-    on_plugin = { "blink.cmp" },
-  },
-  {
-    "blink-emoji.nvim",
-    for_cat = { cat = "coding", default = true },
-    on_plugin = { "blink.cmp" },
-  },
-  {
-    "blink-cmp-spell",
-    for_cat = { cat = "coding", default = true },
-    on_plugin = { "blink.cmp" },
-  },
-  {
-    "blink.compat",
-    for_cat = { cat = "coding", default = true },
-    on_plugin = { "blink.cmp" },
-  },
   -- Main plugin
   {
     "blink.cmp",
     for_cat = { cat = "coding", default = true },
     event = { "DeferredUIEnter" },
     on_require = { "blink" },
+    load = function(name)
+      vim.cmd.packadd(name)
+      vim.cmd.packadd("blink-copilot")
+      vim.cmd.packadd("blink-ripgrep.nvim")
+      vim.cmd.packadd("blink-emoji.nvim")
+      vim.cmd.packadd("blink-cmp-spell")
+      vim.cmd.packadd("blink.compat")
+    end,
     after = function(plugin)
       local bl = require("blink.cmp")
       bl.setup({
@@ -64,6 +48,43 @@ return {
           ["<C-p>"] = { "select_prev" },
           ["<CR>"] = { "accept", "fallback" },
         },
+        appearance = {
+          -- Blink does not expose its default kind icons so you must copy them all (or set your custom ones) and add Copilot
+          kind_icons = {
+            Copilot = "",
+            Text = "󰉿",
+            Method = "󰊕",
+            Function = "󰊕",
+            Constructor = "󰒓",
+
+            Field = "󰜢",
+            Variable = "󰆦",
+            Property = "󰖷",
+
+            Class = "󱡠",
+            Interface = "󱡠",
+            Struct = "󱡠",
+            Module = "󰅩",
+
+            Unit = "󰪚",
+            Value = "󰦨",
+            Enum = "󰦨",
+            EnumMember = "󰦨",
+
+            Keyword = "󰻾",
+            Constant = "󰏿",
+
+            Snippet = "󱄽",
+            Color = "󰏘",
+            File = "󰈔",
+            Reference = "󰬲",
+            Folder = "󰉋",
+            Event = "󱐋",
+            Operator = "󰪚",
+            TypeParameter = "󰬛",
+          },
+        },
+
         -- Completion sources
         sources = {
           default = function(ctx)
@@ -73,6 +94,7 @@ return {
               "path",
               "snippets",
               "buffer",
+              "copilot",
               "ripgrep",
               "emoji",
             }
@@ -83,6 +105,12 @@ return {
             return sourceList
           end,
           providers = {
+            copilot = {
+              name = "copilot",
+              module = "blink-copilot",
+              score_offset = 100,
+              async = true,
+            },
             path = {
               async = true,
             },

@@ -11,6 +11,12 @@ return {
     event = { "InsertEnter" },
     after = function(plugin)
       require("copilot").setup({
+        panel = { enabled = false },
+        suggestion = { enabled = false },
+        nes = {
+          enabled = true,
+          move_count_threshold = 2,
+        },
         copilot_node_command = vim.fn.expand("$HOME" .. "/.nvm/versions/node/v23.11.0/bin/node"),
       })
     end,

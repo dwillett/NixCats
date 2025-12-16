@@ -100,17 +100,17 @@ return {
           size = { width = 0.18 },
         },
         {
-          ft = "canopy-stack",
+          ft = "canopy-graphite-stack",
           title = "Stacks",
           size = { width = 0.18 },
         },
         {
-          ft = "canopy-stage",
+          ft = "canopy-git-stage",
           title = "Stage",
           size = { width = 0.18 },
         },
         {
-          ft = "canopy-stash",
+          ft = "canopy-git-stash",
           title = "Stash",
           size = { width = 0.18 },
         },

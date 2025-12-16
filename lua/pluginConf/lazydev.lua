@@ -12,7 +12,7 @@ return {
   after = function(plugin)
     require("lazydev").setup({
       library = {
-        "nvim-dap-ui",
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         {
           words = { "nixCats" },
           path = (require("nixCats").nixCatsPath or "") .. "/lua",
