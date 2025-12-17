@@ -115,6 +115,11 @@ return {
           size = { width = 0.18 },
         },
         {
+          ft = "canopy-graphite-log",
+          title = "Graphite Log",
+          size = { width = 0.18 },
+        },
+        {
           ft = "NeogitStatus",
           title = "Git Status",
           size = { width = 0.18 },
