@@ -8,7 +8,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Neovim nightly overlay
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Nixcats
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
