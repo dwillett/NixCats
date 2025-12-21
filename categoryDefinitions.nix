@@ -32,9 +32,6 @@
       shadowenv
       nodePackages.typescript-language-server
     ];
-    treesitter = [
-      tree-sitter
-    ];
     util = [
       bash
       dash
