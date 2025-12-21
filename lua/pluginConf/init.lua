@@ -17,7 +17,7 @@ require("lze").load({
   { import = "pluginConf.copilot" },
   { import = "pluginConf.dap" },
   { import = "pluginConf.diffview" },
-  { import = "pluginConf.edgy" },
+  -- { import = "pluginConf.edgy" },
   { import = "pluginConf.ergoterm" },
   { import = "pluginConf.flash" },
   { import = "pluginConf.git" },
