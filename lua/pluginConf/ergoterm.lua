@@ -7,46 +7,92 @@ local function setup_default()
   })
 end
 
-local function setup_claude()
+local function setup_ai()
   local ergoterm = require("ergoterm")
   local map = vim.keymap.set
-  local opts = { noremap = true, silent = true }
-  local claude = ergoterm:new({
-    cmd = "claude",
-    name = "claude",
+
+  local ai_chats = ergoterm.with_defaults({
     layout = "right",
     auto_list = false,
     bang_target = false,
     sticky = true,
     watch_files = true,
+    tags = { "ai_chat" },
   })
-  -- Toggle Claude terminal
-  map("n", "<leader>ai", function()
-    claude:toggle()
-  end, { desc = "Toggle Claude" })
 
-  -- Reference current file to Claude
-  map("n", "<leader>aa", function()
-    local file = vim.fn.expand("%:p")
-    claude:send({ "@" .. file .. " " }, { new_line = false })
-  end, opts)
+  -- Create instances for different AI tools
+  ai_chats:new({
+    cmd = "claude",
+    name = "claude",
+    meta = {
+      add_line = function(term)
+        return term:send("single_line")
+      end,
+      add_selection = function(term)
+        return term:send("visual_selection", { trim = false })
+      end,
+    },
+  })
 
-  -- Send current line to Claude
+  local opencode = ai_chats:new({
+    cmd = "opencode",
+    name = "opencode",
+    env = {
+      OPENAI_API_KEY = vim.env.OPENAI_API_KEY or "",
+    },
+    meta = {
+      add_line = function(term)
+        return term:send({ "@this " .. "_" })
+      end,
+      add_selection = function(term)
+        return term:send({ "@this" })
+      end,
+    },
+  })
+
+  local chats = ergoterm.filter_by_tag("ai_chat")
+
+  map("n", "<leader>al", function()
+    ergoterm.select({
+      terminals = chats,
+      prompt = "Select AI assistant",
+    })
+  end, { desc = "List AI Chats" })
+
+  -- Send line: shortcuts to Opencode if it's the only one running,
+  -- otherwise shows picker
   map("n", "<leader>as", function()
-    claude:send("single_line")
-  end, opts)
+    ergoterm.select_started({
+      terminals = chats,
+      prompt = "Send to assistant",
+      callbacks = function(term)
+        return term.meta.add_line(term)
+      end,
+      default = opencode,
+    })
+  end, { noremap = true, silent = true, desc = "Send Line to assistant" })
 
-  -- Send visual selection to Claude
+  -- Send selection: same smart behavior for visual mode
   map("v", "<leader>as", function()
-    claude:send("visual_selection", { trim = false })
-  end, opts)
+    ergoterm.select_started({
+      terminals = chats,
+      prompt = "Send to chat",
+      callbacks = function(term)
+        return term.meta.add_selection(term)
+      end,
+      default = opencode,
+    })
+  end, { noremap = true, silent = true, desc = "Send Selection to assistant" })
 
-  map("n", "<C-a>", function()
-    claude:toggle()
-  end, { desc = "Toggle Claude" })
-  map("t", "<C-a>", function()
-    claude:toggle()
-  end, { desc = "Toggle Claude" })
+  map({ "n", "x" }, "<leader>aa", function()
+    require("opencode").ask("@this: ", { submit = true })
+  end, { desc = "Ask opencode" })
+  map({ "n", "x" }, "<leader>ax", function()
+    require("opencode").select()
+  end, { desc = "Execute opencode action…" })
+  map({ "n", "t" }, "<C-a>", function()
+    opencode:toggle()
+  end, { desc = "Toggle opencode" })
 end
 
 local function setup_lazygit()
@@ -291,7 +337,7 @@ return {
         end,
       },
     })
-    setup_claude()
+    setup_ai()
     setup_lazygit()
     setup_tasks()
     local default = setup_default()

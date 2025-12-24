@@ -25,6 +25,7 @@ end
 local opt = vim.opt
 
 opt.autowrite = true
+opt.autoread = true -- Auto read file changes
 opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus"
 opt.colorcolumn = "120"
 opt.completeopt = { "menu", "preview", "noselect" }

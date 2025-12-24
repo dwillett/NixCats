@@ -2,7 +2,7 @@ local map = vim.keymap.set
 
 if require("nixCatsUtils").enableForCategory("util") then
   local ergoterm = require("ergoterm")
-  local edgy = require("edgy")
+  -- local edgy = require("edgy")
 
   map("n", "<leader>on", ":TermNew layout=below<CR>", { desc = "New terminal (below)", noremap = true, silent = true })
   map("n", "<leader>ov", ":TermNew layout=right<CR>", { desc = "New terminal (right)", noremap = true, silent = true })
@@ -31,16 +31,16 @@ if require("nixCatsUtils").enableForCategory("util") then
   map("t", "<C-k>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
   map("t", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
-  map("t", "<C-q>", function()
-    edgy.get_win():hide()
-  end, { desc = "Collapse window", noremap = true, silent = true })
+  -- map("t", "<C-q>", function()
+  -- edgy.get_win():hide()
+  -- end, { desc = "Collapse window", noremap = true, silent = true })
 
   local function focus_terminal()
     local term = ergoterm.get_target_for_bang() or ergoterm.get_by_name("default")
     if term and not term:is_focused() then
       term:focus()
     else
-      edgy.goto_main()
+      -- edgy.goto_main()
     end
   end
   map({ "n", "t" }, "<C-/>", focus_terminal, { desc = "Focus terminal", noremap = true, silent = true })

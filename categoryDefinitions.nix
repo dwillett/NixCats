@@ -65,6 +65,7 @@
       lze
       lzextras
       oil-nvim
+      opencode-nvim
       snacks-nvim
     ];
     ui = [
