@@ -47,6 +47,16 @@
       # url = "git+file:///Users/willett/src/github.com/dwillett/canopy.nvim";
       flake = false;
     };
+    plugins-canopy-git-nvim = {
+      url = "git+https://github.com/shopify-playground/canopy-git.nvim";
+      # url = "git+file:///Users/willett/src/github.com/dwillett/canopy-git.nvim";
+      flake = false;
+    };
+    plugins-canopy-graphite-nvim = {
+      url = "git+https://github.com/shopify-playground/canopy-graphite.nvim";
+      # url = "git+file:///Users/willett/src/github.com/dwillett/canopy-graphite.nvim";
+      flake = false;
+    };
   };
 
   outputs = {

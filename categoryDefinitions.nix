@@ -51,6 +51,11 @@
   # Plugins that don't need lazy loading
   startupPlugins = with pkgs.vimPlugins; {
     # Main plugins to have
+    editor = [
+      pkgs.neovimPlugins.canopy-nvim
+      pkgs.neovimPlugins.canopy-git-nvim
+      pkgs.neovimPlugins.canopy-graphite-nvim
+    ];
     lsp = [
       pkgs.neovimPlugins.shadowenv-vim
     ];
@@ -99,7 +104,6 @@
       which-key-nvim
       gitsigns-nvim
       neogit
-      pkgs.neovimPlugins.canopy-nvim
       diffview-nvim
       trouble-nvim
       treesj

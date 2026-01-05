@@ -5,23 +5,34 @@ return {
       cat = "editor",
       default = true,
     },
-    on_require = { "canopy" },
-    cmd = {
-      "Canopy",
-    },
-    keys = {
-      { "<leader>gt", "<cmd>Canopy view dev<cr>", desc = "Toggle Canopy view" },
-    },
+    lazy = false,
+    load = function(name)
+      vim.cmd.packadd(name)
+      vim.cmd.packadd("canopy-git-nvim")
+      vim.cmd.packadd("canopy-graphite-nvim")
+    end,
     after = function(plugin)
       require("canopy").setup({
-        git = {
-          stage = { position = "left" },
-          stash = { position = "left" },
-        },
-        graphite = {
-          stack = { position = "left" },
+        extensions = {
+          git = {},
+          graphite = {},
         },
       })
+      local graphite_view = nil
+      vim.keymap.set("n", "<leader>cv", function()
+        if not graphite_view then
+          graphite_view = require("canopy.core.view").new({
+            layout = {
+              type = "row",
+              children = {
+                { layout = "graphite.sidebar", type = "col", size = 40 },
+                { type = "editor" },
+              },
+            },
+          })
+        end
+        graphite_view:toggle()
+      end)
     end,
   },
 }

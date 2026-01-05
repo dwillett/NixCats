@@ -90,14 +90,46 @@
         "type": "github"
       }
     },
+    "plugins-canopy-git-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767639307,
+        "narHash": "sha256-PgO0qs9byUvGvmo4n18mPrYvUDp8HPDivaexFqluH+c=",
+        "ref": "refs/heads/main",
+        "rev": "98a95a3189f1881131b377118b704c3c9ef65508",
+        "revCount": 27,
+        "type": "git",
+        "url": "https://github.com/shopify-playground/canopy-git.nvim"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/shopify-playground/canopy-git.nvim"
+      }
+    },
+    "plugins-canopy-graphite-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767640139,
+        "narHash": "sha256-0fa3P9vmu/lI0/Jqdv+SSh3OS67Dz1PquDOmXugnMlI=",
+        "ref": "refs/heads/main",
+        "rev": "9c1564c704c6fecaed3edfccd403fcffe068defb",
+        "revCount": 16,
+        "type": "git",
+        "url": "https://github.com/shopify-playground/canopy-graphite.nvim"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/shopify-playground/canopy-graphite.nvim"
+      }
+    },
     "plugins-canopy-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1767634075,
-        "narHash": "sha256-eCbgFaS7qCLX90H2YkUbtqH5o1eSMenNd1aseKFc4B8=",
+        "lastModified": 1767640015,
+        "narHash": "sha256-WrxQRAAJbKZW7+XC7nqli8ANXrQZh8fn40WtYgFcwkA=",
         "ref": "refs/heads/main",
-        "rev": "7115c55514579f2b71b575e5749f906af9fad6d0",
-        "revCount": 184,
+        "rev": "85b7901fd68ca3298edc3756c1011bd0b4dcba79",
+        "revCount": 185,
         "type": "git",
         "url": "https://github.com/shopify-playground/canopy.nvim"
       },
@@ -209,6 +241,8 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
+        "plugins-canopy-git-nvim": "plugins-canopy-git-nvim",
+        "plugins-canopy-graphite-nvim": "plugins-canopy-graphite-nvim",
         "plugins-canopy-nvim": "plugins-canopy-nvim",
         "plugins-ergoterm-nvim": "plugins-ergoterm-nvim",
         "plugins-lualine-nvim": "plugins-lualine-nvim",
