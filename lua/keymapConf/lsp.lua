@@ -83,35 +83,3 @@ if require("nixCatsUtils").enableForCategory("editor") then
   map("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
   map("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
 end
-
--- Refactoring keymaps (if nvim-treesitter-refactoring is available)
-if require("nixCatsUtils").enableForCategory("treesitter") then
-  -- These would normally be in a refactoring.lua but keeping with LSP for now
-  map({ "n", "v" }, "<leader>rf", function()
-    require("refactoring").refactor("Extract Function")
-  end, { desc = "Extract Function" })
-
-  map("v", "<leader>rF", function()
-    require("refactoring").refactor("Extract Function To File")
-  end, { desc = "Extract Function To File" })
-
-  map("v", "<leader>rx", function()
-    require("refactoring").refactor("Extract Variable")
-  end, { desc = "Extract Variable" })
-
-  map({ "n", "v" }, "<leader>ri", function()
-    require("refactoring").refactor("Inline Variable")
-  end, { desc = "Inline Variable" })
-
-  map("n", "<leader>rI", function()
-    require("refactoring").refactor("Inline Function")
-  end, { desc = "Inline Function" })
-
-  map("n", "<leader>rb", function()
-    require("refactoring").refactor("Extract Block")
-  end, { desc = "Extract Block" })
-
-  map("n", "<leader>rB", function()
-    require("refactoring").refactor("Extract Block To File")
-  end, { desc = "Extract Block To File" })
-end

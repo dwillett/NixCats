@@ -38,6 +38,10 @@
       url = "github:dwillett/lualine.nvim/git-branch-reftable-support";
       flake = false;
     };
+    plugins-nvim-treesitter-textobjects = {
+      url = "github:nvim-treesitter/nvim-treesitter-textobjects/main";
+      flake = false;
+    };
     plugins-canopy-nvim = {
       url = "git+https://github.com/shopify-playground/canopy.nvim";
       # url = "git+file:///Users/willett/src/github.com/dwillett/canopy.nvim";

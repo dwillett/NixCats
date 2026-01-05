@@ -27,7 +27,6 @@ wk.add({
   { "<leader>g", group = "git" },
   { "<leader>gh", group = "hunks" },
   { "<leader>o", group = "terminal" },
-  { "<leader>r", group = "refactor" },
   { "<leader>s", group = "search" },
   { "<leader>n", group = "noice" },
   { "<leader>t", group = "test" },

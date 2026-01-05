@@ -67,7 +67,6 @@ require("nixCatsUtils.catPaq").setup({
   -- Treesitter
   { "nvim-treesitter/nvim-treesitter", opt = true, build = ":TSUpdate" },
   { "nvim-treesitter/nvim-treesitter-context", opt = true },
-  { "nvim-treesitter/nvim-treesitter-refactor", opt = true },
   { "nvim-treesitter/nvim-treesitter-textobjects", opt = true },
   -- Ui
   { "catppuccin/nvim", opt = true },

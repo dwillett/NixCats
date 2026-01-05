@@ -127,8 +127,7 @@
     ];
     treesitter = [
       nvim-treesitter-context
-      nvim-treesitter-refactor
-      nvim-treesitter-textobjects
+      pkgs.neovimPlugins.nvim-treesitter-textobjects
     ];
     ui = [
       catppuccin-nvim
@@ -146,7 +145,6 @@
       tabby-nvim
       aerial-nvim
       lspkind-nvim
-      tint-nvim
     ];
     util = [
       edgy-nvim

@@ -35,7 +35,6 @@ require("lze").load({
   { import = "pluginConf.pomodoro" },
   { import = "pluginConf.shadowenv" },
   { import = "pluginConf.snacks" },
-  { import = "pluginConf.tint" },
   { import = "pluginConf.theme" },
   { import = "pluginConf.treesitter" },
   { import = "pluginConf.treesj" },
