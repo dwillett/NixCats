@@ -10,6 +10,7 @@ return {
     require("tint").setup({
       highlight_ignore_patterns = {
         "WinSeparator",
+        "Canopy*",
         "Status.*",
         "VertSplit",
         "LineNr",
