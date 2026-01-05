@@ -26,7 +26,14 @@ return {
               type = "row",
               children = {
                 { layout = "graphite.sidebar", type = "col", size = 40 },
-                { type = "editor" },
+                {
+                  type = "col",
+                  size = "flex",
+                  children = {
+                    { editor = true, size = "flex" },
+                    { panel = "core.log_viewer", size = 16 },
+                  },
+                },
               },
             },
           })

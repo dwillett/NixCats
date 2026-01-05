@@ -109,11 +109,11 @@
     "plugins-canopy-graphite-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1767640139,
-        "narHash": "sha256-0fa3P9vmu/lI0/Jqdv+SSh3OS67Dz1PquDOmXugnMlI=",
+        "lastModified": 1767641482,
+        "narHash": "sha256-nYvIHLlfOkCS4AEBmCi6DVJQd0OLLYiL3hGt/nK6PgA=",
         "ref": "refs/heads/main",
-        "rev": "9c1564c704c6fecaed3edfccd403fcffe068defb",
-        "revCount": 16,
+        "rev": "e3dff6223af139e0d6afc2f08c7a1c471aa50434",
+        "revCount": 17,
         "type": "git",
         "url": "https://github.com/shopify-playground/canopy-graphite.nvim"
       },
@@ -125,11 +125,11 @@
     "plugins-canopy-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1767640015,
-        "narHash": "sha256-WrxQRAAJbKZW7+XC7nqli8ANXrQZh8fn40WtYgFcwkA=",
+        "lastModified": 1767641009,
+        "narHash": "sha256-uNl6kf4uDzPR7dC9NKoHAV4T+H5C79nvrNfOrVs4kZg=",
         "ref": "refs/heads/main",
-        "rev": "85b7901fd68ca3298edc3756c1011bd0b4dcba79",
-        "revCount": 185,
+        "rev": "9a2b9bae169bd4cc8599e90a1bb36736becd14e5",
+        "revCount": 186,
         "type": "git",
         "url": "https://github.com/shopify-playground/canopy.nvim"
       },
