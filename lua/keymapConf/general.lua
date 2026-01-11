@@ -113,7 +113,7 @@ map("n", "q", function()
 end, { desc = "Next Quickfix" })
 
 -- formatting (using conform.nvim when available)
-map({ "n", "v" }, "<leader>cf", function()
+map({ "n", "v" }, "<leader>Cf", function()
   if require("nixCatsUtils").enableForCategory("formatting") then
     require("conform").format()
   else
@@ -129,7 +129,7 @@ local diagnostic_goto = function(next, severity)
     go({ severity = severity })
   end
 end
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "<leader>Cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })

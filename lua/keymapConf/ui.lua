@@ -92,8 +92,8 @@ end
 -- Paq/Lazy/Mason (if not using Nix)
 if not require("nixCatsUtils").isNixCats then
   map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
-  map("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
-  map("n", "<leader>cp", "<cmd>PaqSync<cr>", { desc = "Paq Sync" })
+  map("n", "<leader>Cm", "<cmd>Mason<cr>", { desc = "Mason" })
+  map("n", "<leader>Cp", "<cmd>PaqSync<cr>", { desc = "Paq Sync" })
 end
 
 -- Format toggle (global and buffer)

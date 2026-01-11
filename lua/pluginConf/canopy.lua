@@ -17,11 +17,8 @@ return {
           git = {},
           graphite = {},
         },
-      })
-      local graphite_view = nil
-      vim.keymap.set("n", "<leader>cv", function()
-        if not graphite_view then
-          graphite_view = require("canopy.core.view").new({
+        views = {
+          graphite = {
             layout = {
               type = "row",
               children = {
@@ -36,10 +33,33 @@ return {
                 },
               },
             },
-          })
-        end
-        graphite_view:toggle()
-      end)
+          },
+          coding = {
+            layout = {
+              type = "row",
+              children = {
+                {
+                  type = "col",
+                  size = "20%",
+                  children = {
+                    { panel = "aerial", size = "flex" },
+                    { spacer = true },
+                    { panel = "neotest", size = "flex" },
+                  },
+                },
+                {
+                  type = "col",
+                  size = "flex",
+                  children = {
+                    { editor = true, size = "flex" },
+                    { panel = "core.log_viewer", size = 16 },
+                  },
+                },
+              },
+            },
+          },
+        },
+      })
     end,
   },
 }

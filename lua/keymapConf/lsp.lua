@@ -14,21 +14,21 @@ map("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
 map("i", "<c-k>", vim.lsp.buf.signature_help, { desc = "Signature Help" })
 
 -- Code actions and refactoring
-map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-map({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
-map("n", "<leader>cC", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
-map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
+map({ "n", "v" }, "<leader>Ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+map({ "n", "v" }, "<leader>Cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
+map("n", "<leader>CC", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
+map("n", "<leader>Cr", vim.lsp.buf.rename, { desc = "Rename" })
 
 -- If using inc-rename plugin
 if require("nixCatsUtils").enableForCategory("editor") then
-  map("n", "<leader>cr", function()
+  map("n", "<leader>Cr", function()
     local inc_rename = require("inc_rename")
     return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
   end, { expr = true, desc = "Rename (inc-rename)" })
 end
 
 -- Source action
-map("n", "<leader>cA", function()
+map("n", "<leader>CA", function()
   vim.lsp.buf.code_action({
     context = {
       only = { "source" },
@@ -38,7 +38,7 @@ map("n", "<leader>cA", function()
 end, { desc = "Source Action" })
 
 -- LSP info
-map("n", "<leader>cl", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
+map("n", "<leader>Cl", "<cmd>LspInfo<cr>", { desc = "Lsp Info" })
 
 -- If using snacks picker for enhanced LSP navigation
 if require("nixCatsUtils").enableForCategory("util") then
@@ -59,10 +59,10 @@ if require("nixCatsUtils").enableForCategory("util") then
   end, { desc = "Goto T[y]pe Definition" })
 
   -- Additional snacks LSP pickers
-  map("n", "<leader>cs", function()
+  map("n", "<leader>Cs", function()
     snacks.picker.lsp_symbols()
   end, { desc = "LSP Symbols" })
-  map("n", "<leader>cS", function()
+  map("n", "<leader>CS", function()
     snacks.picker.lsp_workspace_symbols()
   end, { desc = "LSP Workspace Symbols" })
 end
@@ -72,11 +72,11 @@ if require("nixCatsUtils").enableForCategory("editor") then
   -- Trouble-specific keymaps
   map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
   map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics (Trouble)" })
-  map("n", "<leader>cs", "<cmd>AerialToggle<cr>", { desc = "Symbols (Aerial)" })
+  map("n", "<leader>Cs", "<cmd>AerialToggle<cr>", { desc = "Symbols (Aerial)" })
   map({ "n", "t" }, "<C-s>s", "<cmd>AerialToggle<cr>", { desc = "Symbols (Aerial)" })
   map(
     "n",
-    "<leader>cl",
+    "<leader>Cl",
     "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
     { desc = "LSP Definitions / references / ... (Trouble)" }
   )
