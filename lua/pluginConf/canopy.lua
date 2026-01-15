@@ -17,7 +17,9 @@ return {
           git = {},
           graphite = {},
         },
+        default_view = "graphite",
         views = {
+          -- Git/Graphite view: graphite sidebar (stage, stack, events, stash) on left
           graphite = {
             layout = {
               type = "row",
@@ -34,19 +36,29 @@ return {
               },
             },
           },
+          -- Testing view: neotest summary on left
+          testing = {
+            layout = {
+              type = "row",
+              children = {
+                { panel = "neotest", size = 40 },
+                {
+                  type = "col",
+                  size = "flex",
+                  children = {
+                    { editor = true, size = "flex" },
+                    { panel = "core.log_viewer", size = 16 },
+                  },
+                },
+              },
+            },
+          },
+          -- Coding view: aerial outline on left
           coding = {
             layout = {
               type = "row",
               children = {
-                {
-                  type = "col",
-                  size = "20%",
-                  children = {
-                    { panel = "aerial", size = "flex" },
-                    { spacer = true },
-                    { panel = "neotest", size = "flex" },
-                  },
-                },
+                { panel = "aerial", size = 40 },
                 {
                   type = "col",
                   size = "flex",
