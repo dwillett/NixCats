@@ -326,6 +326,7 @@ return {
     require("ergoterm").setup({
       terminal_defaults = {
         layout = "below",
+        start_in_insert = false,
         on_open = function(term)
           -- Prevent other plugins (like nvim-dap) from hijacking terminal windows
           -- to display files. winfixbuf tells Neovim this window should only show

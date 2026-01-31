@@ -128,6 +128,7 @@
       pkgs.neovimPlugins.neotest-ruby-minitest
       neotest-plenary
       neotest-rspec
+      pkgs.neovimPlugins.neotest-busted
     ];
     treesitter = [
       nvim-treesitter-context
